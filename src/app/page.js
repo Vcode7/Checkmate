@@ -1,9 +1,6 @@
 "use client";
-
-import Nav from "@/components/Nav";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Footer from "@/components/Footer";
 import Main from "@/components/main/main";
 import AboutSection from "@/components/main/about";
 import BenefitsSection from "@/components/main/benifits";

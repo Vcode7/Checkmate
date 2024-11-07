@@ -1,12 +1,11 @@
 "use client";
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,10 +13,41 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
-
+import { useRouter } from 'next/navigation';
+import { Avatar, Menu, MenuItem } from '@mui/material';
 const Nav = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
 
+  useEffect(() => {
+    // Ensure this only runs on the client
+    setIsClient(true);
+
+    // Check for the token in local storage if we're on the client
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('authToken');
+      setLoggedIn(!!token);
+    }
+  }, []);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    // Clear the token on logout
+    localStorage.removeItem('authToken');
+    setLoggedIn(false);
+    handleMenuClose();
+    router.push('/login'); // Redirect to login page after logout
+  };
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
@@ -28,10 +58,9 @@ const Nav = () => {
     { name: 'LEARN CHESS', endpoint: '/learnchess' },
     { name: 'TOURNAMENTS', endpoint: '/tournament' },
     { name: 'Leaderboard', endpoint: '/leaderboard' },
-    { name: 'Register', endpoint: '/register' },
-    { name: 'Login', endpoint: '/login' },
-    { name: 'Help', endpoint: '/help' },
     { name: 'Forum', endpoint: '/forum' },
+    { name: 'Register', endpoint: '/register' },
+    { name: 'Login', endpoint: '/login' }
   ];
   
   const DrawerList = (
@@ -67,14 +96,26 @@ const Nav = () => {
           </Link>
         </ListItem>
       </List>
-    
-      
       <List>
-        {drawerItems.slice(5).map((item) => (
+        <ListItem
+          key={drawerItems[5].name}
+          className="transition duration-500 ease-in-out hover:bg-black hover:text-red-600"
+          disablePadding
+        >
+          <Link href={drawerItems[5].endpoint} passHref>
+              <ListItemText primary={drawerItems[5].name} />
+          </Link>
+        </ListItem>
+      </List>
+      {!loggedIn ?(
+
+        
+        <List>
+        {drawerItems.slice(6).map((item) => (
           <ListItem
-            key={item.name}
-            className="transition duration-500 ease-in-out mt-2 hover:bg-black hover:text-red-600"
-            disablePadding
+          key={item.name}
+          className="transition duration-500 ease-in-out mt-2 hover:bg-black hover:text-red-600"
+          disablePadding
           >
             <Link href={item.endpoint} passHref>
                 <ListItemText primary={item.name} />
@@ -82,6 +123,18 @@ const Nav = () => {
           </ListItem>
         ))}
       </List>
+      ):
+      <List>
+      <ListItem
+        className="transition duration-500 ease-in-out hover:bg-black hover:text-red-600"
+        disablePadding
+        >
+          <Link href="/logout" passHref>
+              <ListItemText primary="logout" />
+          </Link>
+        </ListItem>
+    </List>
+      }
     </Box>
   );
   
@@ -119,22 +172,44 @@ const Nav = () => {
   sx={{
     display: 'inline-block',
     fontWeight: 'normal',
-    color: 'black',
+    color: 'white',
     fontWeight:800,
     position: 'relative',
     padding: '0.1em 0.3em',  // Adjust padding as desired
-    textShadow:"0px 0px 2px white"
+    textShadow:"0px 0px 2px black"
   }}
 >
   CHECKMATE
 </Typography>
     
         </Box>
-            <Button color="primary" className="font-bold">
-            <Link href="/login" passHref>
-                 Login
-              </Link>
-            </Button>
+
+        {loggedIn ? (
+        <div>
+          {/* Profile Picture as a Menu Button */}
+          <Avatar
+            onClick={handleMenuOpen}
+            alt="Profile" 
+            sx={{ cursor: 'pointer' }} 
+          />
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+          >
+            <MenuItem onClick={() => { router.push('/profile'); handleMenuClose(); }}>Profile</MenuItem>
+            <MenuItem onClick={() => { router.push('/ratings'); handleMenuClose(); }}>Ratings</MenuItem>
+            <MenuItem onClick={() => { router.push('/leaderboard'); handleMenuClose(); }}>Leaderboard</MenuItem>
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          </Menu>
+        </div>
+      ) : (
+        <Button color="primary" className="font-bold">
+          <Link href="/login" passHref>
+            Login
+          </Link>
+        </Button>
+      )}
           </Toolbar>
         </AppBar>
       </Box>

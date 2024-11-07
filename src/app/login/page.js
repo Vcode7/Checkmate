@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Box, TextField, Button, Typography, Card, CardContent, Divider } from '@mui/material';
+import { Box, TextField, Button, Typography, Card, CardContent, Divider, Alert } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import AppleIcon from '@mui/icons-material/Apple';
@@ -10,15 +10,40 @@ const LoginForm = () => {
     emailOrPhone: '',
     password: '',
   });
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Perform login logic here
+    setError('');
+    setSuccessMessage('');
+
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formValues),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.token) {
+        // Save token to localStorage
+        localStorage.setItem('authToken', data.token);
+        setSuccessMessage('Login successful!');
+        // Optionally, redirect the user or refresh the page
+      } else {
+        // Display error message
+        setError(data.error || 'Login failed. Please try again.');
+      }
+    } catch (error) {
+      setError('An error occurred while logging in. Please try again.');
+    }
   };
 
   return (
@@ -29,18 +54,21 @@ const LoginForm = () => {
         alignItems: 'center',
         minHeight: '100vh',
         padding: '2rem',
-        marginTop:"5rem",
-        backgroundImage: 'url(/img/c1.jpg)', // Replace with the path to your image
+        
+        backgroundImage: 'url(/img/c1.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <Card sx={{ maxWidth: 400, padding: '2rem', backgroundColor: 'rgba(0, 0, 0, 0.8)', backdropFilter: 'blur(5px)' }}>
+      <Card sx={{ maxWidth: 400, padding: '2rem',marginTop: "5rem", backgroundColor: 'rgba(0, 0, 0, 0.8)', backdropFilter: 'blur(5px)' }}>
         <CardContent>
           <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 'bold', color: 'white', textAlign: 'center' }}>
             Login to Your Account
           </Typography>
+
+          {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+          {successMessage && <Alert severity="success" sx={{ mb: 2 }}>{successMessage}</Alert>}
 
           <form onSubmit={handleSubmit}>
             <TextField
