@@ -7,7 +7,8 @@ import BenefitsSection from "@/components/main/benifits";
 import RegistrationSteps from "@/components/main/registrationstep";
 import LearnChessSection from "@/components/main/learnchess";
 import ContactUs from "@/components/main/contact";
-
+import React, { useState, useEffect } from 'react';
+import ChessLoader from '@/components/loader';
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -15,10 +16,19 @@ const darkTheme = createTheme({
 });
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    // Simulate a loading delay
+    const timer = setTimeout(() => setLoading(false));
+    return () => clearTimeout(timer);
+  }, []);
+
+  
   return (
     <div className="bg-black">
-     <ThemeProvider theme={darkTheme}>
-     <CssBaseline />
+   
+      <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <Main />
       <AboutSection />
       <BenefitsSection />
@@ -26,6 +36,9 @@ export default function Home() {
       <LearnChessSection />
       <ContactUs />
       </ThemeProvider>
+      <ChessLoader />
+     
+    
     </div>
   );
 }

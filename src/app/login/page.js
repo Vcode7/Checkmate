@@ -34,7 +34,7 @@ const LoginForm = () => {
 
       if (response.ok && data.token) {
         // Save token to localStorage
-        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('Token', data.token);
         setSuccessMessage('Login successful!');
         // Optionally, redirect the user or refresh the page
       } else {

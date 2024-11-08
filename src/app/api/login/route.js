@@ -32,7 +32,14 @@ export async function POST(request) {
     }
 
     // Generate JWT token
-    const token = jwt.sign(user, process.env.JWT_SECRET);
+    const userObject = user.toObject();
+
+    // Remove the password from the object before signing the token
+    delete userObject.password;
+
+    // Sign a JWT token with the user's data (excluding the password)
+    const token = jwt.sign(userObject, process.env.JWT_SECRET); // Optionally, you can set an expiry for the token
+
 
     // Send token to the client
     return NextResponse.json({ success: true, token }, { status: 200 });

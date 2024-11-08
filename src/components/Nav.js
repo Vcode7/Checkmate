@@ -28,7 +28,7 @@ const Nav = () => {
 
     // Check for the token in local storage if we're on the client
     if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem('Token');
       setLoggedIn(!!token);
     }
   }, []);
