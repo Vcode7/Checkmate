@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Mogra&display=swap');
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -16,10 +16,39 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* globals.css */
+/* globals.css */
+
+  background-image: url('/bg.jpg'); /* Replace with the actual path to your image */
+ 
+  background-repeat:repeat; /* Allows the image to tile */
+  background-position: center;
+  background-color: black; /* Base color behind the image */
+  font-family: 'Mogra', sans-serif;
 }
-@keyframes a1 {
-  0% { background-position: 0%; }
-  100% { background-position: 100%; }
+
+/* Use a pseudo-element for the overlay effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110vh;
+  background: linear-gradient(
+    to bottom, 
+    rgba(22, 12, 0, 0.9) 0%, /* Slightly dark at 70% */
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(22, 12, 0, 0.5) 50%,   /* Transparent at the top */
+    rgba(22, 12, 0, 0.7) 70%, /* Slightly dark at 70% */
+    rgba(0, 0, 0, 0.9) 100%   /* Black at the bottom */
+  );
+  pointer-events: none; /* Ensures overlay doesn’t interfere with content */
+  z-index: -1; /* Stays behind the content */
 }
+
+h1, h2, h3, .mogra-font {
+  font-family: 'Mogra', sans-serif; /* Use this class or directly on elements */
+}
+
+

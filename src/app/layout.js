@@ -1,7 +1,10 @@
+// layout.js
+import React from 'react';
 import localFont from "next/font/local";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { UserDataProvider } from "@/components/Userdataprovider"; // Import UserDataProvider
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,7 +17,6 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// Metadata for the club (this can be defined directly as server-only)
 export const metadata = {
   title: "Checkmate Chess Club",
   description: "Join the Checkmate Chess Club to improve your chess skills and meet other enthusiasts!",
@@ -23,11 +25,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}>
-      <Nav />
-        {children}
-        <Footer />
+      <body className={` antialiased`}>
+        <UserDataProvider>
+          <Nav />
+          {children}
+          <Footer />
+        </UserDataProvider>
       </body>
     </html>
   );

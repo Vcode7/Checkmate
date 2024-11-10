@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {
   Typography,Box, TextField, Button
   } from '@mui/material';
+import { setTokenInLocalStorage } from '@/components/tokenstore';
 
 const Section3Form = ({formValues,handleInputChange,setReserr, onBack, onSubmit ,email}) => {
 
@@ -26,7 +27,7 @@ const res = await response.json();
 if (res.success) {
   setReserr("")
   if (typeof window !== "undefined") {
-    localStorage.setItem('authToken', response.token);
+    setTokenInLocalStorage(response.token);
   }
   onSubmit();
 }

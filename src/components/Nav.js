@@ -15,24 +15,22 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Avatar, Menu, MenuItem } from '@mui/material';
+import { useUser } from './Userdataprovider';
+
 const Nav = () => {
   const [open, setOpen] = useState(false);
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
-
+  const userData = useUser();
   useEffect(() => {
-    // Ensure this only runs on the client
-    setIsClient(true);
-
-    // Check for the token in local storage if we're on the client
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('Token');
-      setLoggedIn(!!token);
+    if (userData) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
     }
-  }, []);
-
+  }, [userData]);
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -43,9 +41,7 @@ const Nav = () => {
 
   const handleLogout = () => {
     // Clear the token on logout
-    localStorage.removeItem('authToken');
     setLoggedIn(false);
-    handleMenuClose();
     router.push('/login'); // Redirect to login page after logout
   };
   const toggleDrawer = (newOpen) => () => {

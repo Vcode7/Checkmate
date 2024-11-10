@@ -8,7 +8,7 @@ export async function POST(request) {
   await connectDB();
 
   try {
-    const { email, phone, password, college, course, semester, chessId } = await request.json();
+    const { name,email, phone, password, college, course, semester, chessId } = await request.json();
 
     // Verify the chessId with Chess.com API
     const response = await fetch(`https://api.chess.com/pub/player/${chessId}`);
@@ -31,6 +31,7 @@ export async function POST(request) {
 
     // Create new user with the provided data
     const user = new Register({
+      name,
       email,
       phone,
       college,

@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import ThreeModel from '../Three/Threemodel';
+import TextStyle from '../style/Textstyle';
 
 const Main = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -43,6 +44,7 @@ const Main = () => {
   
 
       <Typography
+      className="mogra-font"
         variant="h3"
         sx={{
           position: 'absolute',
@@ -54,7 +56,10 @@ const Main = () => {
           transition: 'opacity 3s ease-in-out',
         }}
       >
-        Welcome to Checkmate Chess Club
+        <TextStyle 
+        text="Welcome to Checkmate Chess Club"
+        />
+        
       </Typography>
     </Box>
   );

@@ -52,8 +52,7 @@ const RegistrationSteps = () => {
         maxWidth: 600,
         margin: '1rem auto',
         padding: '2rem',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        backdropFilter: 'blur(10px)',
+        backgroundColor: 'rgba(22, 12, 0, 0.7)',
         borderRadius: '8px',
       }}
     >
@@ -65,7 +64,7 @@ const RegistrationSteps = () => {
       </Animate>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
-          <Step key={step.label} sx={{ '& .MuiStepIcon-root': { color: 'red' } }}> {/* Set step circle color to red */}
+          <Step key={step.label} sx={{ '& .MuiStepIcon-root': { color: 'orange' } }}> {/* Set step circle color to red */}
             <Animate animationType="fadeInUp">
             <StepLabel>
               <Typography variant="h6" sx={{ color: 'white' }}>{step.label}</Typography> {/* Keep title white */}

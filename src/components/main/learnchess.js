@@ -19,20 +19,7 @@ const LearnChessSection = () => {
       }}
     >
       {/* Background Image */}
-      <Box
-        sx={{
-          width: "100%",
-          height: "50vh",
-          position: 'absolute',
-          left: 0,
-          top: 0, // Positioning the image at the top of the Box
-          opacity: 0.3,
-          zIndex: 0,
-          backgroundImage: 'url("/img/c4.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      ></Box>
+    
 
       {/* Optional Semi-transparent Overlay */}
       <Box
@@ -42,7 +29,7 @@ const LearnChessSection = () => {
           top: 0,
           width: "100%",
           height: "50vh",
-          backgroundColor: 'rgba(0, 0, 0, 0.1)', // Dark overlay for better text visibility
+          backgroundColor: 'rgba(0, 0, 0, 0.2)', // Dark overlay for better text visibility
           zIndex: 1, // Positioning above the image
         }}
       ></Box>

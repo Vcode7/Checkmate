@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { Box, Typography, Grid, Link, IconButton } from '@mui/material';
+import { Box, Typography, Grid, Link, IconButton} from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -13,14 +13,13 @@ const Footer = () => {
       <Box
         component="footer"
         sx={{
-          backgroundColor: 'black',
+          background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 1) 100%)', // Gradient from transparent to black
           color: 'white',
           padding: '2rem 2rem',
-          mt: 'auto',
+           // Increased margin-top for more space
         }}
       >
-
-        <Grid container spacing={4} justifyContent="center">
+        <Grid container spacing={4} className='mt-20' justifyContent="center">
           
           {/* About Checkmate Chess Club */}
           <Grid item xs={12} sm={4}>

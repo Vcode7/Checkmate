@@ -3,6 +3,7 @@ import { Box, Typography, Card, CardContent, Divider, LinearProgress } from '@mu
 import { useSwipeable } from 'react-swipeable';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import Animate from '../animate';
+import TextStyle from '../style/Textstyle';
 
 const BenefitsSection = () => {
   const [selectedCard, setSelectedCard] = useState(0);
@@ -45,16 +46,14 @@ const BenefitsSection = () => {
     <Box
       {...swipeHandlers}
       className="relative p-4 text-center bg-cover bg-center min-h-screen flex flex-col justify-center items-center"
-      style={{ 
-        backgroundImage: "url('/img/c5.jpg')", 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center', 
-      }}
+      
     >
       {/* Title with animation */}
       <Animate animationType="fadeInUp">
         <Typography variant="h4" component="h2" gutterBottom className="font-bold text-white opacity-90">
-          Benefits of Joining Checkmate Club
+          <TextStyle text="Benefits of Joining Checkmate Club"/>
+          
+
         </Typography>
       </Animate>
 
@@ -69,7 +68,7 @@ const BenefitsSection = () => {
           borderRadius: '4px',
           backgroundColor: 'rgba(255, 255, 255, 0.2)',
           '& .MuiLinearProgress-bar': {
-            backgroundColor: 'primary.main',
+            backgroundColor: 'orange',
           },
           opacity: 0.8,
         }}
@@ -111,7 +110,7 @@ const BenefitsSection = () => {
         {benefits.map((benefit, index) => (
             <Card
             key={index}
-              className="bg-black bg-opacity-75 text-white rounded-lg shadow-lg flex-shrink-0 w-full"
+              className="bg-transparent text-white rounded-lg shadow-lg flex-shrink-0 w-full"
               sx={{
                 position: 'relative',
                 transition: "all .5s linear",
@@ -127,7 +126,7 @@ const BenefitsSection = () => {
                 <Typography variant="h5" component="h3" gutterBottom className="font-bold">
                   {benefit.title}
                 </Typography>
-                <Divider sx={{ bgcolor: 'rgba(255, 255, 255, 0.3)', marginY: '1rem' }} />
+                <Divider sx={{ bgcolor: 'orange', marginY: '1rem' }} />
                 <Typography variant="body1">{benefit.description}</Typography>
               </CardContent>
               </Animate>

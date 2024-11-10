@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, Card, CardContent, Link, Grid } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Animate from '../animate';
+import TextStyle from '../style/Textstyle';
 
 const AboutSection = () => {
   return (
@@ -24,16 +25,14 @@ const AboutSection = () => {
           <Animate animationType="arriveFromLeft">
             <Box
               sx={{
-                backgroundImage: `url('/img/c3.jpg')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                background: `rgba(0,0,0,0.1)`,
                 height: { xs: '250px', md: '400px' },
                 borderRadius: '12px',
                 position: 'relative',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                boxShadow: '0 4px 20px rgba(0, 0, 0,0.1)',
+                boxShadow: '0 4px 20px rgba(0, 0, 0,0.2)',
                 overflow: 'hidden',
               }}
             >
@@ -50,6 +49,7 @@ const AboutSection = () => {
                     borderRadius: '8px',
                   }}
                 >
+                 
                   About Checkmate Club
                 </Typography>
               </Animate>
@@ -62,7 +62,7 @@ const AboutSection = () => {
             <Card
               sx={{
                 padding: '1rem',
-                background: 'rgba(0, 0, 0, 0.6)',
+                background: 'rgba(0, 0, 0, 0.3)',
                 borderRadius: '12px',
                 boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
                 height: '100%',
@@ -75,7 +75,8 @@ const AboutSection = () => {
                     color="primary"
                     sx={{ fontWeight: 'bold', textAlign: 'center' }}
                   >
-                    Welcome to Checkmate Club
+                    <TextStyle text="Welcome to Checkmate Club"/>
+                   
                   </Typography>
                 </Animate>
                 <Animate animationType="fadeInUp">
@@ -112,12 +113,12 @@ const AboutSection = () => {
                   <Link
                     href="#about-more"
                     underline="none"
-                    color="primary"
                     className='hover:text-red-800'
                     sx={{
                       display: 'flex',
                       alignItems: 'center',
                       fontWeight: 'bold',
+                      color:"orange",
                     }}
                   >
                     Learn More <ArrowForwardIosIcon fontSize="small" sx={{ ml: 0.5 }} />
@@ -126,12 +127,11 @@ const AboutSection = () => {
                     href="#register"
                     underline="none"
                     className='hover:text-red-800'
-                    color="primary"
                     sx={{
                       display: 'flex',
                       alignItems: 'center',
                       fontWeight: 'bold',
-                      
+                      color:"orange",
                     }}
                   >
                     Register Now <ArrowForwardIosIcon fontSize="small" sx={{ ml: 0.5 }} />

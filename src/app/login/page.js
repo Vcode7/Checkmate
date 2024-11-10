@@ -1,9 +1,12 @@
-"use client";
+"use client"; // Ensure this component runs on the client-side
+
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography, Card, CardContent, Divider, Alert } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import AppleIcon from '@mui/icons-material/Apple';
+import { useRouter } from 'next/navigation'; // Import Next.js router
+import { setTokenInLocalStorage } from '@/components/tokenstore'; // Import setToken function
 
 const LoginForm = () => {
   const [formValues, setFormValues] = useState({
@@ -12,6 +15,7 @@ const LoginForm = () => {
   });
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const router = useRouter(); // Initialize the router to handle redirects
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -33,10 +37,17 @@ const LoginForm = () => {
       const data = await response.json();
 
       if (response.ok && data.token) {
-        // Save token to localStorage
-        localStorage.setItem('Token', data.token);
+        // Save token to localStorage using the setToken function
+        setTokenInLocalStorage(data.token);
+
+        // Show success message
         setSuccessMessage('Login successful!');
-        // Optionally, redirect the user or refresh the page
+
+        // Set a timeout of 2 seconds before redirecting
+        setTimeout(() => {
+          // Redirect to the homepage after 2 seconds
+          router.push('/');
+        }, 2000);
       } else {
         // Display error message
         setError(data.error || 'Login failed. Please try again.');
@@ -54,14 +65,13 @@ const LoginForm = () => {
         alignItems: 'center',
         minHeight: '100vh',
         padding: '2rem',
-        
         backgroundImage: 'url(/img/c1.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <Card sx={{ maxWidth: 400, padding: '2rem',marginTop: "5rem", backgroundColor: 'rgba(0, 0, 0, 0.8)', backdropFilter: 'blur(5px)' }}>
+      <Card sx={{ maxWidth: 400, padding: '2rem', marginTop: '5rem', backgroundColor: 'rgba(0, 0, 0, 0.8)', backdropFilter: 'blur(5px)' }}>
         <CardContent>
           <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 'bold', color: 'white', textAlign: 'center' }}>
             Login to Your Account

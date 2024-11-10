@@ -16,6 +16,7 @@ const RegistrationForm = () => {
 
   const [reserr, setReserr] = useState("")
   const [formValues, setFormValues] = useState({
+    name: '',
     email: '',
     phone: '',
     password: '',

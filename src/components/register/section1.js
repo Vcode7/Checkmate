@@ -9,6 +9,7 @@ const Section1Form = ({formValues,handleInputChange,formErrors,setFormErrors,set
    
     const validateStep = () => {
         const errors = {};
+        if (!formValues.name) errors.name = 'name is required';
         if (!formValues.email) errors.email = 'Email is required';
         if (!formValues.phone) errors.phone = 'Phone number is required';
         if (!formValues.password) errors.password = 'Password is required';
@@ -47,6 +48,20 @@ const Section1Form = ({formValues,handleInputChange,formErrors,setFormErrors,set
         <Box component="form" noValidate sx={{ mt: 2 }}>
            
             {/* Email and Password Fields */}
+            <TextField
+                label="name"
+                name="name"
+                value={formValues.name}
+                onChange={handleInputChange}
+                fullWidth
+                margin="normal"
+                error={!!formErrors.name}
+                helperText={formErrors.name}
+                InputLabelProps={{ style: { color: 'white' } }}
+                InputProps={{ style: { color: 'white' } }}
+                variant="outlined"
+                sx={{ backgroundColor: 'rgba(0,0,0,0.7)', borderRadius: 1 }}
+            />
             <TextField
                 label="Email"
                 name="email"

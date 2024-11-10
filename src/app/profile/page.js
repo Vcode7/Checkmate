@@ -3,25 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Card, CardContent, Avatar, Grid, IconButton, Divider, useMediaQuery, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
 import { Edit as EditIcon, Save as SaveIcon, Close as CloseIcon } from '@mui/icons-material';
-import {jwtDecode} from "jwt-decode";
+import {useUser} from "@/components/Userdataprovider"
+
 const ProfilePage = () => {
   const [editMode, setEditMode] = useState(false);
-  const [editableData, setEditableData] = useState({});// Use theme.breakpoints here
-  
-  const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('Token');
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        setUserData(decoded);
-        setEditableData(decoded);
-      } catch (error) {
-        console.error('Invalid token:', error);
-      }
-    }
-  }, []);
+  const userData = useUser();
+  const [editableData, setEditableData] = useState(userData);// Use theme.breakpoints here
 
   const handleEditToggle = () => setEditMode(!editMode);
 
@@ -29,12 +16,31 @@ const ProfilePage = () => {
     setEditableData((prevData) => ({ ...prevData, [field]: value }));
   };
 
-  const handleSave = () => {
-    setUserData(editableData);
-    setEditMode(false);
-    // Save changes here
-  };
+   
+  const handleSave = async () => {
+    try {
+      // Send static token (from env) for authorization
+      const response = await fetch('/api/editdata', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,  // Static token from env
+        },
+        body: JSON.stringify({ userData: editableData }),
+      });
 
+      const result = await response.json();
+
+      if (response.ok) {
+        setEditMode(false);
+        // Optionally, update the state or context with the updated data
+      } else {
+        setError(result.error || 'Failed to update profile');
+      }
+    } catch (err) {
+      setError('Error occurred while updating profile');
+    }
+  };
   if (!userData) {
     return <Typography variant="h6" align="center" sx={{ mt: 4 }}>No user information available. Please log in.</Typography>;
   }
@@ -46,8 +52,7 @@ const ProfilePage = () => {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
-        marginTop:"5rem",
-        backgroundColor: 'black',
+       
         padding:'2rem'
       }}
     >
@@ -56,8 +61,9 @@ const ProfilePage = () => {
         width: '100%',
         backgroundColor: 'rgba(0, 0, 0, 0.85)',
         color: 'white',
-        padding: '2rem',
+        padding: '.5rem',
         boxShadow: 3,
+        marginTop:"5rem",
         borderRadius: 2,
       }}>
         <CardContent>
@@ -71,7 +77,7 @@ const ProfilePage = () => {
           </Typography>
 
           <Grid container spacing={2}>
-            {['email', 'phone', 'college', 'course', 'semester', 'chessId'].map((field) => (
+            {['name','email', 'phone', 'college', 'course', 'semester', 'chessId'].map((field) => (
               <Grid item xs={12} sm={6} key={field}>
                 <Box
                   sx={{
@@ -82,7 +88,8 @@ const ProfilePage = () => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    position: 'relative'
+                    position: 'relative',
+                    textAlign:"center"
                   }}
                 >
                   <Typography variant="body2" sx={{ color: 'grey.400', fontWeight: 'bold' }}>

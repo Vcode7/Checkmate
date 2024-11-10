@@ -16,16 +16,9 @@ const darkTheme = createTheme({
 });
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    // Simulate a loading delay
-    const timer = setTimeout(() => setLoading(false));
-    return () => clearTimeout(timer);
-  }, []);
-
   
   return (
-    <div className="bg-black">
+    <div >
    
       <ThemeProvider theme={darkTheme}>
       <CssBaseline />
@@ -36,7 +29,6 @@ export default function Home() {
       <LearnChessSection />
       <ContactUs />
       </ThemeProvider>
-      <ChessLoader />
      
     
     </div>
