@@ -19,15 +19,22 @@ const ThreeModel = ({
   const frameId = useRef(null); // Track the animation frame
 
   useEffect(() => {
+    const mountNode = mountRef.current; // Save the initial value of mountRef.current
+
     // Initialize scene, camera, and renderer
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, mountRef.current.clientWidth / mountRef.current.clientHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      mountNode.clientWidth / mountNode.clientHeight,
+      0.1,
+      1000
+    );
     const renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+    renderer.setSize(mountNode.clientWidth, mountNode.clientHeight);
 
     // Add renderer's DOM element to the component
-    if (mountRef.current) {
-      mountRef.current.appendChild(renderer.domElement);
+    if (mountNode) {
+      mountNode.appendChild(renderer.domElement);
     }
 
     // Set background color
@@ -49,7 +56,6 @@ const ThreeModel = ({
 
     // Load the model
     const loader = new GLTFLoader();
-    const startTime = Date.now();
 
     loader.load(
       modelPath,
@@ -70,9 +76,7 @@ const ThreeModel = ({
 
           // Rotate model and apply tilt effect
           modelRef.current.rotation.y += rotationSpeed;
-         
           modelRef.current.rotation.z = tiltAngle * Math.sin(Date.now() * 0.001);
-         
 
           // Smoothly move the camera position towards the target
           camera.position.lerp(targetPosition, 0.02);
@@ -98,8 +102,8 @@ const ThreeModel = ({
       if (renderer) {
         renderer.dispose();
       }
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement); // Only remove if mountRef exists
+      if (mountNode && renderer.domElement) {
+        mountNode.removeChild(renderer.domElement); // Use mountNode for consistent reference
       }
       if (scene) {
         scene.clear(); // Remove all objects from the scene

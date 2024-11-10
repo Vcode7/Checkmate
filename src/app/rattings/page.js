@@ -49,7 +49,7 @@ const RatingPage = ({ chessId }) => {
       <Card sx={{ maxWidth: 500, width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.8)', color: 'white', padding: '2rem' }}>
         <CardContent>
           <Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', mb: 3 }}>
-            {chessId}'s Chess Ratings
+            {chessId}&apos;s Chess Ratings
           </Typography>
           <Grid container spacing={2}>
             {chess_blitz && (

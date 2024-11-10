@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, Link } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Animate from '../animate'; // Assuming this is the path to your Animate component
+import TextStyle from '../style/Textstyle';
 
 const LearnChessSection = () => {
   return (
@@ -19,7 +20,7 @@ const LearnChessSection = () => {
       }}
     >
       {/* Background Image */}
-    
+
 
       {/* Optional Semi-transparent Overlay */}
       <Box
@@ -38,18 +39,18 @@ const LearnChessSection = () => {
       <Animate animationType="fadeInUp"> {/* Wrap content in Animate component */}
         <Box sx={{ position: 'relative', zIndex: 2 }}> {/* Ensure content is above both the image and overlay */}
           <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', color: 'skyblue' }}>
-            Do You Know Chess?
+            <TextStyle text="Do You Know Chess?"/>
+            
           </Typography>
 
           <Typography variant="body1" gutterBottom sx={{ marginBottom: '1rem' }}>
-            Chess is a strategic game loved by millions around the world. Whether you're a beginner or a seasoned player,
-            there's always more to learn and master.
+            Chess is a strategic game loved by millions around the world. Whether you&apos;re a beginner or a seasoned player,
+            there&apos;s always more to learn and master.
           </Typography>
 
           <Typography variant="body1" sx={{ marginBottom: '2rem', color: 'lightgray' }}>
-            If you're new to chess, don't worry! We have resources to get you started on your journey to becoming a skilled player.
+            If you&apos;re new to chess, don&apos;t worry! We have resources to get you started on your journey to becoming a skilled player.
           </Typography>
-
           <Link
             href="https://www.chess.com/learn-how-to-play-chess"
             target="_blank"

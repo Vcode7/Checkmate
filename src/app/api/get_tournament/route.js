@@ -1,7 +1,7 @@
 // src/app/api/getTournaments/route.js
 import { NextResponse } from 'next/server';
-import connectDB from '../../../../middleware/connectdb';
-import Tournament from '../../../../models/Tournament';
+import connectDB from "mid/connectdb.js";
+import Tournament from 'mo/Tournament.js';
 
 export async function GET() {
   await connectDB();

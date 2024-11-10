@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import connectDB from '../../../../middelware/connectdb'; // Path to your connectDB file
-import Register from '../../../../models/Register'; // Your user model
+import connectDB from "mid/connectdb.js";
+import Register from 'mo/Register.js';// Your user model
 
 export async function GET() {
   try {

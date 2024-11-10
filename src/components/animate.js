@@ -13,58 +13,36 @@ const animations = {
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: 20 },
   },
-  fadeInDown: {
-    initial: { opacity: 0, y: -20 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
-  },
-  arriveFromLeft: {
-    initial: { opacity: 0, x: -100 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -100 },
-  },
-  arriveFromRight: {
-    initial: { opacity: 0, x: 100 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: 100 },
-  },
-  scale: {
-    initial: { scale: 0 },
-    animate: { scale: 1 },
-    exit: { scale: 0 },
-  },
-  rotate: {
-    initial: { rotate: -180 },
-    animate: { rotate: 0 },
-    exit: { rotate: 180 },
-  },
 };
 
-const Animate = ({ children, animationType, duration = 1.75 }) => {
+const Animate = ({ children, animationType = "fadeIn", duration = 1.75 }) => {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleScroll = (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        setIsVisible(true);
-      }
-    });
-  };
-
   useEffect(() => {
-    const observer = new IntersectionObserver(handleScroll, {
-      threshold: 0.1, // Trigger when 10% of the element is visible
-    });
+    const targetElement = ref.current; // Capture the current ref value at the beginning of the effect
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target); // Stop observing after the first intersection
+          }
+        });
+      },
+      { threshold: 0.1 } // Trigger when 10% of the element is visible
+    );
+
+    if (targetElement) {
+      observer.observe(targetElement);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (targetElement) {
+        observer.unobserve(targetElement); // Use the captured targetElement
       }
+      observer.disconnect(); // Ensure the observer is fully cleaned up
     };
   }, []);
 
@@ -77,7 +55,7 @@ const Animate = ({ children, animationType, duration = 1.75 }) => {
       exit="exit"
       transition={{
         duration,
-        ease: [0.6, 0.05, 0.01, 0.99], // Cubic Bezier for smooth transitions
+        ease: [0.6, 0.05, 0.01, 0.99], // Smooth cubic bezier
       }}
     >
       {children}

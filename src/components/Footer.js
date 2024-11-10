@@ -6,6 +6,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import Animate from './animate'; // Ensure to import the Animate component
+import TextStyle from './style/Textstyle';
 
 const Footer = () => {
   return (
@@ -28,7 +29,7 @@ const Footer = () => {
             </Typography>
             <Typography variant="body2">
               Checkmate Chess Club is dedicated to bringing together chess
-              enthusiasts of all levels. Whether you’re a beginner or a grandmaster,
+              enthusiasts of all levels. Whether you&apos;re a beginner or a grandmaster,
               join us to improve your skills and participate in exciting tournaments!
             </Typography>
           </Grid>
@@ -83,11 +84,12 @@ const Footer = () => {
         </Grid>
 
         <Box mt={3} textAlign="center">
-          <Typography variant="body2" color='primary'>
+          <Typography variant="body2" color='red'>
             &copy; {new Date().getFullYear()} Checkmate Chess Club. All rights reserved.
           </Typography>
           <Typography variant="body2">
-            "Where Every Move Counts!"
+            <TextStyle text="&quot;Where Every Move Counts!&quot;"/>
+          
           </Typography>
         </Box>
       </Box>
