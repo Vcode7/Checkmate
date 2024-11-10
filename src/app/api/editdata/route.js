@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 
 // Assuming you're using MongoDB to update user data
-import connectDB from "mid/connectdb.js";
-import Register from 'mo/Register.js';
+import connectDB from '@/lib/middelware/connectdb';
+import Register from '@/lib/models/Register';
 
 export async function PUT(request) {
   await connectDB();

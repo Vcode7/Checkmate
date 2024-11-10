@@ -1,5 +1,5 @@
-import connectDB from "mid/connectdb.js";
-import Register from 'mo/Register.js';
+import connectDB from '@/lib/middelware/connectdb';
+import Register from '@/lib/models/Register';
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {

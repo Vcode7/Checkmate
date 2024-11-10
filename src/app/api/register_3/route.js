@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import connectDB from "mid/connectdb.js";
-import Register from 'mo/Register.js';
+import connectDB from '@/lib/middelware/connectdb';
+import Register from '@/lib/models/Register';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
