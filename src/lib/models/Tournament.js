@@ -2,36 +2,37 @@
 import mongoose from 'mongoose';
 
 const TournamentSchema = new mongoose.Schema({
-  TournamentName: {
+  Name: {
     type: String,
     required: true
   },
-  email: {
+  MaxMember: {
+    type: Number,
+    required: true,
+  },
+  start: {
     type: String,
     required: true,
   },
-  phone: {
+  end: {
     type: String,
     required: true,
-    match: [/^\d{10}$/, 'is invalid'],
   },
-  password: {
+  time: {
     type: String,
     required: true,
-    minlength: 6,
   },
-  college: {
+  link: {
+    type: String,
+    required: true,
+  },
+  date:{
+    type:Date,
+    required:true
+  },
+  result: {
     type: String
-  },
-  course: {
-    type: String
-  },
-  semester: {
-    type: String
-  },
-  chessId: {
-    type: String
-  },
+  }
 }, {
   timestamps: true,
 });

@@ -44,7 +44,7 @@ const AboutSection = () => {
                     color: 'white',
                     fontWeight: 'bold',
                     textAlign: 'center',
-                    textShadow:"0 0 5px black",
+                    textShadow:"0 0 5px orange",
                     padding: '0.5rem 1rem',
                     borderRadius: '8px',
                   }}
@@ -62,9 +62,9 @@ const AboutSection = () => {
             <Card
               sx={{
                 padding: '1rem',
-                background: 'rgba(0, 0, 0, 0.3)',
+                background: 'rgba(0, 0, 0, 0.1)',
                 borderRadius: '12px',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.8)',
                 height: '100%',
               }}
             >

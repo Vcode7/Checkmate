@@ -45,15 +45,17 @@ const Main = () => {
 
       <Typography
       className="mogra-font"
-        variant="h3"
+      variant='h4'
         sx={{
           position: 'absolute',
           zIndex: 2,
           maxWidth:"20rem",
-          textAlign: 'center',
+          fontSize:"2.3rem",
+          textAlign: 'left',
           fontWeight: 'bold',
           opacity: isVisible ? 1 : 0,
           transition: 'opacity 3s ease-in-out',
+          
         }}
       >
         <TextStyle 

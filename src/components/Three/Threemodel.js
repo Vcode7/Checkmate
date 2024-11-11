@@ -26,7 +26,7 @@ const ThreeModel = ({
     const camera = new THREE.PerspectiveCamera(
       75,
       mountNode.clientWidth / mountNode.clientHeight,
-      0.1,
+      0.8,
       1000
     );
     const renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -41,7 +41,7 @@ const ThreeModel = ({
     renderer.setClearColor(new THREE.Color(backgroundColor), 0); // 0 makes it transparent
 
     // Add ambient lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    const ambientLight = new THREE.AmbientLight(0xffA500, 0.4);
     scene.add(ambientLight);
 
     // Add point light from above and front
@@ -62,13 +62,12 @@ const ThreeModel = ({
       (gltf) => {
         const model = gltf.scene;
         model.scale.set(0.5, 0.5, 0.5);
-        model.rotation.x = tiltAngle;
         scene.add(model);
         modelRef.current = model;
 
         // Set initial camera position and target
-        camera.position.set(3, 1, 8);
-        const targetPosition = new THREE.Vector3(0, 2.8, 5);
+        camera.position.set(3, 2.8, 6);
+        const targetPosition = new THREE.Vector3(-1.5, 2.8, 6);
 
         // Animation loop
         const animate = () => {
@@ -76,7 +75,6 @@ const ThreeModel = ({
 
           // Rotate model and apply tilt effect
           modelRef.current.rotation.y += rotationSpeed;
-          modelRef.current.rotation.z = tiltAngle * Math.sin(Date.now() * 0.001);
 
           // Smoothly move the camera position towards the target
           camera.position.lerp(targetPosition, 0.02);

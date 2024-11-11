@@ -35,13 +35,14 @@ body::before {
   left: 0;
   width: 100%;
   height: 110vh;
-  background: linear-gradient(
-    to bottom, 
-    rgba(22, 12, 0, 0.9) 0%, /* Slightly dark at 70% */
-    rgba(0, 0, 0, 0.7) 30%,
-    rgba(22, 12, 0, 0.5) 50%,   /* Transparent at the top */
-    rgba(22, 12, 0, 0.7) 70%, /* Slightly dark at 70% */
-    rgba(0, 0, 0, 0.9) 100%   /* Black at the bottom */
+  background: radial-gradient(
+    circle, 
+    rgba(26, 20, 9, 0.8) 0%,
+    rgba(14, 9, 4, 0.85) 15%, /* Slightly dark at 70% */
+    rgba(10, 7, 3, 0.9) 30%,
+    rgba(3, 2, 1, 0.95) 70%,   /* Transparent at the top */
+    rgba(3, 2, 1, 10) 80%, /* Slightly dark at 70% */
+    rgba(0, 0, 0, 10) 100%   /* Black at the bottom */
   );
   pointer-events: none; /* Ensures overlay doesn’t interfere with content */
   z-index: -1; /* Stays behind the content */

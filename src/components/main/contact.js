@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, TextField, Button, Typography, IconButton } from '@mui/material';
 import { LinkedIn, Instagram, Email } from '@mui/icons-material';
 import Animate from '../animate'; // Ensure to import the Animate component
+import TextStyle from '../style/Textstyle';
 
 const ContactUs = () => {
   const handleSubmit = (event) => {
@@ -18,14 +19,15 @@ const ContactUs = () => {
           maxWidth: 800,
           margin: '2rem auto',
           padding: '2rem',
-          backgroundColor: 'rgba(0, 0, 0, 0.2)',
+          backgroundColor: 'rgba(0, 0, 0, 0.1)',
           borderRadius: '8px',
           textAlign: 'center',
           color: 'white',
         }}
       >
         <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', color: 'lightblue' }}>
-          Contact Us
+          
+          <TextStyle text="Contact Us" />
         </Typography>
 
         <Typography variant="body1" sx={{ marginBottom: '1rem', color: 'lightgray' }}>
@@ -34,10 +36,10 @@ const ContactUs = () => {
 
         {/* Social Media Icons */}
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, marginBottom: 3 }}>
-          <IconButton href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" color="primary">
+          <IconButton href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" sx={{color:"orange"}}>
             <LinkedIn fontSize="large" />
           </IconButton>
-          <IconButton href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" color="primary">
+          <IconButton href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" sx={{color:"orange"}}>
             <Instagram fontSize="large" />
           </IconButton>
         </Box>
@@ -56,7 +58,7 @@ const ContactUs = () => {
                   borderColor: 'lightgray',
                 },
                 '&:hover fieldset': {
-                  borderColor: 'lightblue',
+                  borderColor: 'orange',
                 },
               },
             }}
@@ -74,7 +76,7 @@ const ContactUs = () => {
                   borderColor: 'lightgray',
                 },
                 '&:hover fieldset': {
-                  borderColor: 'lightblue',
+                  borderColor: 'orange',
                 },
               },
             }}
@@ -93,7 +95,7 @@ const ContactUs = () => {
                   borderColor: 'lightgray',
                 },
                 '&:hover fieldset': {
-                  borderColor: 'lightblue',
+                  borderColor: 'orange',
                 },
               },
             }}
@@ -104,7 +106,7 @@ const ContactUs = () => {
             color="dark"
             sx={{
               padding: '0.6rem 1.5rem',
-              backgroundColor: 'red',
+              backgroundColor: 'transparent',
               '&:hover': { backgroundColor: 'darkorange' },
               fontWeight: 'bold',
               fontSize: '1rem',

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Card, CardContent, Button, Grid, Tabs, Tab } from '@mui/material';
 import dayjs from 'dayjs'; // Import dayjs for date formatting
+import TextStyle from '@/components/style/Textstyle';
 
 const TournamentPage = () => {
   const [tournamentType, setTournamentType] = useState('upcoming');
@@ -157,14 +158,14 @@ const TournamentPage = () => {
         maxWidth: 900,
         margin: 'auto',
         padding: '2rem',
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
         borderRadius: '8px',
         color: 'white',
         marginTop: '5rem',
         textAlign: 'center',
       }}
     >
-      <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'lightblue', mb: 4 }}>
+      <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'white', mb: 4 ,textShadow:"0 0 5px orange"}}>
         Tournaments
       </Typography>
 
@@ -176,10 +177,10 @@ const TournamentPage = () => {
           marginBottom: 3,
           '& .MuiTab-root': {
             color: 'white',
-            '&.Mui-selected': { color: 'lightblue' },
+            '&.Mui-selected': { color: 'darkorange' },
           },
           '& .MuiTabs-indicator': {
-            backgroundColor: 'lightblue',
+            backgroundColor: 'orange',
           },
         }}
         variant="scrollable"
@@ -197,7 +198,7 @@ const TournamentPage = () => {
               sx={{
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
                 border: '2px solid',
-                borderColor: 'purple',
+                borderColor: 'gray',
                 borderRadius: 2,
                 color: 'white',
                 transition: '0.3s',
@@ -206,11 +207,10 @@ const TournamentPage = () => {
             >
               <CardContent>
                 <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: 'lightblue' }}>
-                  {tournament.name}
+                  <TextStyle text={tournament.name}/>
                 </Typography>
                 <Typography>Date: {dayjs(tournament.startDate).format('YYYY-MM-DD')}</Typography>
-                <Typography>Max Members: {tournament.maxMembers}</Typography>
-                <Typography>Registered Members: {tournament.registeredMembers}</Typography>
+                <Typography>{tournament.registeredMembers}/{tournament.maxMembers}</Typography>
                 <Typography>Timing: {tournament.timing}</Typography>
                 <Box sx={{ marginTop: 2 }}>
                   {tournamentType === 'completed' ? (
@@ -221,7 +221,7 @@ const TournamentPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       sx={{
-                        backgroundColor: 'darkgreen',
+                        backgroundColor: 'transparent',
                         color: 'white',
                         '&:hover': { backgroundColor: 'green' },
                       }}
@@ -236,7 +236,7 @@ const TournamentPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       sx={{
-                        backgroundColor: 'purple',
+                        backgroundColor: 'transparent',
                         color: 'white',
                         '&:hover': { backgroundColor: 'darkorange' },
                       }}

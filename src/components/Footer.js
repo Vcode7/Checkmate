@@ -14,7 +14,7 @@ const Footer = () => {
       <Box
         component="footer"
         sx={{
-          background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 1) 100%)', // Gradient from transparent to black
+          background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 1) 60%,rgba(0, 0, 0, 1) 100%)', // Gradient from transparent to black
           color: 'white',
           padding: '2rem 2rem',
            // Increased margin-top for more space
@@ -40,22 +40,22 @@ const Footer = () => {
               Quick Links
             </Typography>
             <Box>
-              <Link href="#" color="inherit" className='hover:text-red-700' underline='none'>
+              <Link href="/" color="inherit" className='hover:text-orange-700' underline='none'>
                 Home
               </Link>
             </Box>
             <Box>
-              <Link href="#" color="inherit" className='hover:text-red-700' underline='none'>
-                Upcoming Events
+              <Link href="/tournament" color="inherit" className='hover:text-orange-700' underline='none'>
+                Upcoming Tournaments
               </Link>
             </Box>
             <Box>
-              <Link href="#" color="inherit" className='hover:text-red-700' underline='none'>
-                Membership
+              <Link href="/register" color="inherit" className='hover:text-orange-700' underline='none'>
+                register
               </Link>
             </Box>
             <Box>
-              <Link href="#" color="inherit" className='hover:text-red-700' underline='none'>
+              <Link href="/" color="inherit" className='hover:text-orange-700' underline='none'>
                 Contact Us
               </Link>
             </Box>
@@ -84,13 +84,10 @@ const Footer = () => {
         </Grid>
 
         <Box mt={3} textAlign="center">
-          <Typography variant="body2" color='red'>
+          <Typography variant="body2" color='orange'>
             &copy; {new Date().getFullYear()} Checkmate Chess Club. All rights reserved.
           </Typography>
-          <Typography variant="body2">
-            <TextStyle text="&quot;Where Every Move Counts!&quot;"/>
-          
-          </Typography>
+          <TextStyle text="&quot;Where Every Move Counts!&quot;"/>
         </Box>
       </Box>
     </Animate>

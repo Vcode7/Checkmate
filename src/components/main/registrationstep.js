@@ -5,6 +5,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import GooglePlayIcon from '@mui/icons-material/Android'; // Play Store icon
 import AppleIcon from '@mui/icons-material/Apple'; // App Store icon
 import Animate from '../animate'; // Make sure to import your Animate component
+import TextStyle from '../style/Textstyle';
 
 const RegistrationSteps = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -22,6 +23,10 @@ const RegistrationSteps = () => {
     {
       label: 'Register with Checkmate Club',
       description: 'Fill out the registration form with your Chess.com username and personal details.',
+      links:[
+        { label: 'register ', url: '/register', isButton: false },
+        
+      ]
     },
     {
       label: 'Pay Club Registration Amount',
@@ -52,22 +57,24 @@ const RegistrationSteps = () => {
         maxWidth: 600,
         margin: '1rem auto',
         padding: '2rem',
-        backgroundColor: 'rgba(22, 12, 0, 0.7)',
         borderRadius: '8px',
       }}
     >
       
       <Animate animationType="fadeInUp">
-      <Typography variant="h4" align="center" gutterBottom sx={{ color: 'white', fontWeight: 'bold' }}>
+      <Typography variant="h4" align="center" gutterBottom sx={{ color: 'white', fontWeight: 'bold' ,textShadow:"0 0 5px orange"}}>
         Registration Steps
+       
       </Typography>
       </Animate>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
-          <Step key={step.label} sx={{ '& .MuiStepIcon-root': { color: 'orange' } }}> {/* Set step circle color to red */}
+          <Step key={step.label} sx={{ marginTop: 3 , '& .MuiStepIcon-root': { color: 'orange' } }}> {/* Set step circle color to red */}
             <Animate animationType="fadeInUp">
             <StepLabel>
-              <Typography variant="h6" sx={{ color: 'white' }}>{step.label}</Typography> {/* Keep title white */}
+              <Typography variant="h6" sx={{ color: 'white' }}>
+              <TextStyle  text={step.label}/>
+                </Typography> {/* Keep title white */}
             </StepLabel>
             </Animate>
 
@@ -75,8 +82,8 @@ const RegistrationSteps = () => {
               <Animate animationType="fadeInUp">
                 <Typography sx={{ color: 'white' }}>{step.description}</Typography>
 
-                {index === 0 && (
-                  <Box sx={{ marginTop: 2 }}>
+                {(index === 0 || index===1) && (
+                  <Box sx={{ marginTop: 3 }}>
                     {step.links.map((link, i) => (
                       link.isButton ? (
                         <Button
@@ -89,7 +96,8 @@ const RegistrationSteps = () => {
                           variant="contained"
                           sx={{
                             marginRight: 1,
-                            backgroundColor: 'darkgrey',
+                            backgroundColor: 'rgba(0,0,0,0.5)',
+                            color:"orange",
                             marginTop: 1,
                           }}
                         >
@@ -107,7 +115,7 @@ const RegistrationSteps = () => {
                             color: 'lightgray',
                             marginTop: 1,
                             textDecoration: 'none',
-                            '&:hover': { color: 'purple' },
+                            '&:hover': { color: 'orange' },
                           }}
                         >
                           <span>{link.label}</span>
@@ -123,7 +131,7 @@ const RegistrationSteps = () => {
                     onClick={handleNext}
                     sx={{
                       display: 'inline-block',
-                      color: 'skyblue',
+                      color: 'orange',
                       textDecoration: 'none',
                       marginRight: 1,
                     }}

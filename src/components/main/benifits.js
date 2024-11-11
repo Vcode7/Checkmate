@@ -45,13 +45,13 @@ const BenefitsSection = () => {
   return (
     <Box
       {...swipeHandlers}
-      className="relative p-4 text-center bg-cover bg-center min-h-screen flex flex-col justify-center items-center"
-      
+      className="relative p-4 text-center m-auto bg-cover bg-center min-h-screen flex flex-col justify-center items-center"
+      sx={{maxWidth:600}}
     >
       {/* Title with animation */}
       <Animate animationType="fadeInUp">
-        <Typography variant="h4" component="h2" gutterBottom className="font-bold text-white opacity-90">
-          <TextStyle text="Benefits of Joining Checkmate Club"/>
+        <Typography variant="h4" component="h2" sx={{textShadow:"0 0 5px orange"}} gutterBottom className="font-bold text-white opacity-90">
+          Benefits of Joining Checkmate Club
           
 
         </Typography>
@@ -124,10 +124,11 @@ const BenefitsSection = () => {
       <Animate animationType="fadeInUp">
               <CardContent>
                 <Typography variant="h5" component="h3" gutterBottom className="font-bold">
-                  {benefit.title}
+                  
+                  <TextStyle text={benefit.title}/>
                 </Typography>
                 <Divider sx={{ bgcolor: 'orange', marginY: '1rem' }} />
-                <Typography variant="body1">{benefit.description}</Typography>
+                <Typography variant="body1" sx={{padding:"1rem 2rem"}}>{benefit.description}</Typography>
               </CardContent>
               </Animate>
             </Card>
