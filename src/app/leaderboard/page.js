@@ -1,8 +1,5 @@
 "use client";
 import { useEffect, useState } from 'react';
-<<<<<<< HEAD
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Typography } from '@mui/material';
-=======
 import { Box,
   Card, CardContent, Typography, Grid, Table, TableBody, Tab,
   Tabs,
@@ -15,31 +12,17 @@ import ScheduleIcon from '@mui/icons-material/Schedule';
 const sortPlayersByRating = (players, type) => {
   return players.sort((a, b) => b[`${type}Rating`] - a[`${type}Rating`]);
 };
->>>>>>> 25ee8bd (0000)
 
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-<<<<<<< HEAD
-=======
   const [selectedTab, setSelectedTab] = useState('blitz'); // Default tab
->>>>>>> 25ee8bd (0000)
 
   useEffect(() => {
     // Fetch leaderboard data from the API
     const fetchLeaderboardData = async () => {
       try {
-<<<<<<< HEAD
-        const res = await fetch('/api/leaderboard');
-        const data = await res.json();
-
-        if (res.ok) {
-          setLeaderboard(data); // Set the leaderboard data
-        } else {
-          setError(data.error || 'Failed to fetch leaderboard');
-        }
-=======
         const data = [
           // Sample data
           {
@@ -80,7 +63,6 @@ const Leaderboard = () => {
         ];
         
         setLeaderboard(data);
->>>>>>> 25ee8bd (0000)
       } catch (err) {
         setError('Error fetching leaderboard data');
         console.error(err);
@@ -95,17 +77,9 @@ const Leaderboard = () => {
   // Display loading state
   if (loading) {
     return (
-<<<<<<< HEAD
-      <div style={{ textAlign: 'center', marginTop: '10rem' }}>
-        <CircularProgress />
-        <Typography variant="h6" style={{ marginTop: '20px', color: 'white' }}>
-          Loading leaderboard...
-        </Typography>
-=======
       <div className="flex justify-center items-center h-screen bg-gray-900">
         <CircularProgress sx={{ color: 'white' }} />
         <Typography variant="h6" className="ml-4 text-white">Loading leaderboard...</Typography>
->>>>>>> 25ee8bd (0000)
       </div>
     );
   }
@@ -113,76 +87,13 @@ const Leaderboard = () => {
   // Display error state
   if (error) {
     return (
-<<<<<<< HEAD
-      <div style={{ textAlign: 'center', marginTop: '50px' }}>
-        <Typography variant="h6" color="error" style={{ color: 'white' }}>
-=======
       <div className="flex justify-center items-center h-screen bg-gray-900">
         <Typography variant="h6" color="error" className="text-white">
->>>>>>> 25ee8bd (0000)
           Error: {error}
         </Typography>
       </div>
     );
   }
-<<<<<<< HEAD
-
-  return (
-    <div
-      style={{
-        minHeight: '100vh', // Full viewport height
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent', // Dark background
-        padding: '5rem 1rem', // Top margin of 5rem
-      }}
-    >
-      <Typography variant="h4" align="center" gutterBottom style={{ color: 'white' }}>
-        Leaderboard
-      </Typography>
-
-      <TableContainer
-        component={Paper}
-        sx={{
-          backgroundColor: 'transparent', // Transparent background
-          border: '2px solid orange', // Orange border
-          borderRadius: '8px', // Rounded corners for the table
-        }}
-      >
-        <Table sx={{ minWidth: 650 }} aria-label="leaderboard table">
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{ borderBottom: '2px solid orange', color: 'white' }}>Name</TableCell>
-              <TableCell sx={{ borderBottom: '2px solid orange', color: 'white' }}>Chess ID</TableCell>
-              <TableCell sx={{ borderBottom: '2px solid orange', color: 'white' }}>Blitz Rating</TableCell>
-              <TableCell sx={{ borderBottom: '2px solid orange', color: 'white' }}>Rapid Rating</TableCell>
-              <TableCell sx={{ borderBottom: '2px solid orange', color: 'white' }}>Bullet Rating</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {leaderboard.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={5} align="center" sx={{ borderBottom: '2px solid orange', color: 'white' }}>
-                  No leaderboard data available
-                </TableCell>
-              </TableRow>
-            ) : (
-              leaderboard.map((user, index) => (
-                <TableRow key={index}>
-                  <TableCell sx={{ borderBottom: '1px solid orange', color: 'white' }}>{user.name}</TableCell>
-                  <TableCell sx={{ borderBottom: '1px solid orange', color: 'white' }}>{user.chessId}</TableCell>
-                  <TableCell sx={{ borderBottom: '1px solid orange', color: 'white' }}>{user.blitzRating}</TableCell>
-                  <TableCell sx={{ borderBottom: '1px solid orange', color: 'white' }}>{user.rapidRating}</TableCell>
-                  <TableCell sx={{ borderBottom: '1px solid orange', color: 'white' }}>{user.bulletRating}</TableCell>
-                </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-=======
   const renderPlayerCards = (players, type) => {
     return (
     <Box sx={{display:"flex",width:"100%",justifyContent:"center",alignItems:"flex-end",margin:"auto"}}>
@@ -306,7 +217,6 @@ const Leaderboard = () => {
         </Grid>
         {renderTable(selectedTab)}
       </Box>
->>>>>>> 25ee8bd (0000)
     </div>
   );
 };

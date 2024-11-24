@@ -3,10 +3,7 @@ import { Box, Typography, Card, CardContent, Link, Grid } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Animate from '../animate';
 import TextStyle from '../style/Textstyle';
-<<<<<<< HEAD
-=======
 import HeadStyle from '../style/Textstyle2';
->>>>>>> 25ee8bd (0000)
 
 const AboutSection = () => {
   return (
@@ -14,10 +11,7 @@ const AboutSection = () => {
       sx={{
         padding: '4rem 1rem',
         display: 'flex',
-<<<<<<< HEAD
-=======
         background:"linear-gradient(to top,rgba(0,0,0,0),rgba(0,0,0,1))",
->>>>>>> 25ee8bd (0000)
         justifyContent: 'center',
       }}
     >
@@ -33,13 +27,9 @@ const AboutSection = () => {
           <Animate animationType="arriveFromLeft">
             <Box
               sx={{
-<<<<<<< HEAD
-                background: `rgba(0,0,0,0.1)`,
-=======
                 
                 backgroundSize:"cover",
                 backgroundPosition:"center",
->>>>>>> 25ee8bd (0000)
                 height: { xs: '250px', md: '400px' },
                 borderRadius: '12px',
                 position: 'relative',
@@ -58,22 +48,13 @@ const AboutSection = () => {
                     color: 'white',
                     fontWeight: 'bold',
                     textAlign: 'center',
-<<<<<<< HEAD
-                    textShadow:"0 0 5px orange",
-=======
                     textShadow:"0 0 5px black",
->>>>>>> 25ee8bd (0000)
                     padding: '0.5rem 1rem',
                     borderRadius: '8px',
                   }}
                 >
-<<<<<<< HEAD
-                 
-                  About Checkmate Club
-=======
                  <HeadStyle text="About Checkmate Club"/>
                   
->>>>>>> 25ee8bd (0000)
                 </Typography>
               </Animate>
             </Box>
@@ -91,11 +72,7 @@ const AboutSection = () => {
                 height: '100%',
               }}
             >
-<<<<<<< HEAD
-              <CardContent>
-=======
               <CardContent className='text-white'>
->>>>>>> 25ee8bd (0000)
                 <Animate animationType="fadeInUp">
                   <Typography
                     variant="h6"
@@ -109,10 +86,6 @@ const AboutSection = () => {
                 <Animate animationType="fadeInUp">
                   <Typography
                     variant="body1"
-<<<<<<< HEAD
-                    color="text.secondary"
-=======
->>>>>>> 25ee8bd (0000)
                     sx={{ marginTop: '1rem' }}
                   >
                     Checkmate Club is a place where passionate chess players of all
@@ -123,10 +96,6 @@ const AboutSection = () => {
                 <Animate animationType="fadeInUp">
                   <Typography
                     variant="body1"
-<<<<<<< HEAD
-                    color="text.secondary"
-=======
->>>>>>> 25ee8bd (0000)
                     sx={{ marginTop: '1rem' }}
                   >
                     Whether you’re looking to improve your game, meet other enthusiasts, or compete in tournaments, we offer a supportive platform for your journey. Join us, play matches, and see your Chess.com ranking rise!

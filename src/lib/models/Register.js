@@ -36,12 +36,9 @@ const RegisterSchema = new mongoose.Schema({
   chessId: {
     type: String
   },
-<<<<<<< HEAD
-=======
   avatar: {
     type: String
   },
->>>>>>> 25ee8bd (0000)
 }, {
   timestamps: true,
 });

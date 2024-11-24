@@ -1,9 +1,5 @@
 "use client";
-<<<<<<< HEAD
-import React from 'react';
-=======
 import React, { useEffect, useState } from 'react';
->>>>>>> 25ee8bd (0000)
 import { Box, Typography, Grid, Link, IconButton} from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -13,15 +9,12 @@ import Animate from './animate'; // Ensure to import the Animate component
 import TextStyle from './style/Textstyle';
 
 const Footer = () => {
-<<<<<<< HEAD
-=======
   const [isVisible, setIsVisible] = useState(false)
   useEffect(() => {
     setTimeout(() => {
       setIsVisible(true)
     }, 3000);
   }, []);
->>>>>>> 25ee8bd (0000)
   return (
     <Animate animationType="fadeIn">
       <Box
@@ -30,10 +23,7 @@ const Footer = () => {
           background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 1) 60%,rgba(0, 0, 0, 1) 100%)', // Gradient from transparent to black
           color: 'white',
           padding: '2rem 2rem',
-<<<<<<< HEAD
-=======
           opacity:isVisible ? 1:0 ,
->>>>>>> 25ee8bd (0000)
            // Increased margin-top for more space
         }}
       >

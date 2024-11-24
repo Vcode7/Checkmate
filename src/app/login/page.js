@@ -126,48 +126,7 @@ const LoginForm = () => {
 
           <Divider sx={{ my: 3, backgroundColor: 'gray' }} />
 
-<<<<<<< HEAD
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <Button
-              variant="outlined"
-              fullWidth
-              startIcon={<GoogleIcon />}
-              sx={{
-                color: 'white',
-                borderColor: 'gray',
-                '&:hover': { borderColor: 'darkorange', color: 'darkorange' },
-              }}
-            >
-              Continue with Google
-            </Button>
-            <Button
-              variant="outlined"
-              fullWidth
-              startIcon={<GitHubIcon />}
-              sx={{
-                color: 'white',
-                borderColor: 'gray',
-                '&:hover': { borderColor: 'darkorange', color: 'darkorange' },
-              }}
-            >
-              Continue with GitHub
-            </Button>
-            <Button
-              variant="outlined"
-              fullWidth
-              startIcon={<AppleIcon />}
-              sx={{
-                color: 'white',
-                borderColor: 'gray',
-                '&:hover': { borderColor: 'darkorange', color: 'darkorange' },
-              }}
-            >
-              Continue with Apple
-            </Button>
-          </Box>
-=======
           
->>>>>>> 25ee8bd (0000)
         </CardContent>
       </Card>
     </Box>

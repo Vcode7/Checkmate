@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import {
       Box, TextField, Button, Typography,Alert
     } from '@mui/material';
-<<<<<<< HEAD
-import { Google as GoogleIcon, GitHub as GitHubIcon, Apple as AppleIcon } from '@mui/icons-material';
-    
-=======
-
->>>>>>> 25ee8bd (0000)
 const Section1Form = ({formValues,handleInputChange,formErrors,setFormErrors,setReserr, onNext}) => {
     
    
@@ -141,63 +135,7 @@ const Section1Form = ({formValues,handleInputChange,formErrors,setFormErrors,set
                 </Button>
             </Box>
             {/* Divider Text */}
-<<<<<<< HEAD
-            <Typography variant="subtitle2" sx={{ textAlign: 'center', color: 'white', my: 2 }}>
-                or sign up with
-            </Typography>
-
-            {/* Social Login Buttons */}
-
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mb: 2 }}>
-                <Button
-                    variant="outlined"
-                    sx={{
-                        color: 'white',
-                        borderColor: 'gray',
-                        '&:hover': { borderColor: 'darkorange', color: 'darkorange' },
-                        width: '100%',
-                        maxWidth: '300px',
-                    }}
-                    startIcon={<GoogleIcon />}
-                    onClick={() => handleSocialLogin('google')}
-                >
-                    Login with Google
-                </Button>
-
-                <Button
-                    variant="outlined"
-                    sx={{
-                        color: 'white',
-                        borderColor: 'gray',
-                        '&:hover': { borderColor: 'darkorange', color: 'darkorange' },
-                        width: '100%',
-                        maxWidth: '300px',
-                    }}
-                    startIcon={<GitHubIcon />}
-                    onClick={() => handleSocialLogin('github')}
-                >
-                    Login with GitHub
-                </Button>
-
-                <Button
-                    variant="outlined"
-                    sx={{
-                        color: 'white',
-                        borderColor: 'gray',
-                        '&:hover': { borderColor: 'darkorange', color: 'darkorange' },
-                        width: '100%',
-                        maxWidth: '300px',
-                    }}
-                    startIcon={<AppleIcon />}
-                    onClick={() => handleSocialLogin('apple')}
-                >
-                    Login with Apple
-                </Button>
-            </Box>
-
-=======
             
->>>>>>> 25ee8bd (0000)
            
         </Box>
     );
