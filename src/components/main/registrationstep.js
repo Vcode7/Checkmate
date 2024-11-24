@@ -51,6 +51,15 @@ const RegistrationSteps = () => {
   };
 
   return (
+<<<<<<< HEAD
+=======
+    <Box sx={{
+      width: '100%',
+      backgroundImage:"url('/img/f1.jpg')",
+      backgroundSize:"cover",
+      
+    }}>
+>>>>>>> 25ee8bd (0000)
     <Box
       sx={{
         width: '100%',
@@ -58,6 +67,10 @@ const RegistrationSteps = () => {
         margin: '1rem auto',
         padding: '2rem',
         borderRadius: '8px',
+<<<<<<< HEAD
+=======
+        background:"rgba(0,0,0,0.7)"
+>>>>>>> 25ee8bd (0000)
       }}
     >
       
@@ -73,7 +86,11 @@ const RegistrationSteps = () => {
             <Animate animationType="fadeInUp">
             <StepLabel>
               <Typography variant="h6" sx={{ color: 'white' }}>
+<<<<<<< HEAD
               <TextStyle  text={step.label}/>
+=======
+              {step.label}
+>>>>>>> 25ee8bd (0000)
                 </Typography> {/* Keep title white */}
             </StepLabel>
             </Animate>
@@ -160,7 +177,11 @@ const RegistrationSteps = () => {
           </Link>
         </Paper>
       )}
+<<<<<<< HEAD
     </Box>
+=======
+    </Box></Box>
+>>>>>>> 25ee8bd (0000)
   );
 };
 

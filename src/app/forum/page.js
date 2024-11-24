@@ -70,7 +70,10 @@ const ForumPage = () => {
     <Box
       sx={{
         padding: "2rem",
+<<<<<<< HEAD
         backgroundColor: "black",
+=======
+>>>>>>> 25ee8bd (0000)
         color: "white",
         marginTop:"5rem",
         minHeight: "100vh",

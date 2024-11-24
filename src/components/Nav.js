@@ -16,6 +16,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Avatar, Menu, MenuItem } from '@mui/material';
 import { useUser } from './Userdataprovider';
+<<<<<<< HEAD
 
 const Nav = () => {
   const [open, setOpen] = useState(false);
@@ -24,13 +25,41 @@ const Nav = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const router = useRouter();
   const userData = useUser();
+=======
+import { removeTokenFromLocalStorage } from './tokenstore';
+import { usePathname } from 'next/navigation'
+ 
+const Nav = () => {
+  const [open, setOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const router = useRouter();
+  const userData = useUser(); // Access the current route
+  const pathname = usePathname()
+>>>>>>> 25ee8bd (0000)
   useEffect(() => {
     if (userData) {
       setLoggedIn(true);
     } else {
       setLoggedIn(false);
     }
+<<<<<<< HEAD
   }, [userData]);
+=======
+
+    // Set timeout based on the route
+    const timeoutDuration = pathname === "/" ? 4000 : 1000;
+    console.log(pathname)
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, timeoutDuration);
+
+    // Cleanup to avoid memory leaks
+    return () => clearTimeout(timeout);
+  }, [userData, pathname]);
+
+>>>>>>> 25ee8bd (0000)
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -42,6 +71,10 @@ const Nav = () => {
   const handleLogout = () => {
     // Clear the token on logout
     setLoggedIn(false);
+<<<<<<< HEAD
+=======
+    removeTokenFromLocalStorage()
+>>>>>>> 25ee8bd (0000)
     router.push('/login'); // Redirect to login page after logout
   };
   const toggleDrawer = (newOpen) => () => {
@@ -49,6 +82,7 @@ const Nav = () => {
   };
 
   const drawerItems = [
+<<<<<<< HEAD
     { name: 'HOME', endpoint: '/' },
     { name: 'ABOUT US', endpoint: '/about' },
     { name: 'TOURNAMENTS', endpoint: '/tournament' },
@@ -56,15 +90,30 @@ const Nav = () => {
     { name: 'Forum', endpoint: '/forum' },
     { name: 'Register', endpoint: '/register' },
     { name: 'Login', endpoint: '/login' }
+=======
+    { name: 'HOME', endpoint: '/' ,icons:"/icons/king.png"},
+    { name: 'ABOUT US', endpoint: '/about',icons:"/icons/queen.png" },
+    { name: 'TOURNAMENTS', endpoint: '/tournament',icons:"/icons/rook.png" },
+    { name: 'LEADERBOARD', endpoint: '/leaderboard',icons:"/icons/horse.png" },
+    { name: 'FORUM', endpoint: '/forum',icons:"/icons/pawn.png" },
+    { name: 'Register', endpoint: '/register',icons:"/icons/bishop.png"},
+    { name: 'Login', endpoint: '/login',icons:"/icons/bishop.png" }
+>>>>>>> 25ee8bd (0000)
   ];
 
   const DrawerList = (
     <Box
+<<<<<<< HEAD
       sx={{ width: 250, paddingTop: '10vh', margin: "1rem", backgroundColor: 'black' }}
+=======
+    className="bg-stone-950"
+      sx={{ width: 250, paddingTop: '10vh', paddingLeft:"5px"}}
+>>>>>>> 25ee8bd (0000)
       role="presentation"
       onClick={toggleDrawer(false)}
     >
       <List>
+<<<<<<< HEAD
         {drawerItems.slice(0, 4).map((item) => (
           <ListItem
             key={item.name}
@@ -107,15 +156,28 @@ const Nav = () => {
   </g>
 </svg>
 
+=======
+        {drawerItems.slice(0, 5).map((item) => (
+          <ListItem
+            key={item.name}
+            className="transition duration-500 py-2 ease-in-out hover:bg-black hover:text-orange-700"
+            disablePadding
+          >
+          <Box component="img" src={item.icons} alt="" className="w-6 pr-2"/>
+>>>>>>> 25ee8bd (0000)
             <Link href={item.endpoint} passHref>
               <ListItemText className="font-bold" primary={item.name} />
             </Link>
           </ListItem>
         ))}
       </List>
+<<<<<<< HEAD
 
       <Divider color="error" />
 
+=======
+{/* 
+>>>>>>> 25ee8bd (0000)
       <List>
         <ListItem
           key={drawerItems[4].name}
@@ -137,18 +199,32 @@ const Nav = () => {
             <ListItemText primary={drawerItems[5].name} />
           </Link>
         </ListItem>
+<<<<<<< HEAD
       </List>
+=======
+      </List> */}
+>>>>>>> 25ee8bd (0000)
       {!loggedIn ? (
 
 
         <List>
+<<<<<<< HEAD
           {drawerItems.slice(6).map((item) => (
+=======
+          {drawerItems.slice(5,7).map((item) => (
+>>>>>>> 25ee8bd (0000)
             <ListItem
               key={item.name}
               className="transition duration-500 ease-in-out mt-2 hover:bg-black hover:text-red-600"
               disablePadding
             >
+<<<<<<< HEAD
               <Link href={item.endpoint} passHref>
+=======
+              <Box component="img" src={item.icons} alt="" className="w-6 pr-2"/>
+              <Link href={item.endpoint} passHref>
+           
+>>>>>>> 25ee8bd (0000)
                 <ListItemText primary={item.name} />
               </Link>
             </ListItem>
@@ -160,9 +236,16 @@ const Nav = () => {
             className="transition duration-500 ease-in-out hover:bg-black hover:text-red-600"
             disablePadding
           >
+<<<<<<< HEAD
             <Link href="/logout" passHref>
               <ListItemText primary="logout" />
             </Link>
+=======
+            <Box component="img" src="/icons/bishop.png" alt="" className="w-6 pr-2"/>
+            <Button onClick={handleLogout}>
+              <ListItemText primary="logout" />
+            </Button>
+>>>>>>> 25ee8bd (0000)
           </ListItem>
         </List>
       }
@@ -173,7 +256,13 @@ const Nav = () => {
 
   return (
     <div>
+<<<<<<< HEAD
       <Box sx={{ flexGrow: 1 }}>
+=======
+      <Box sx={{ flexGrow: 1 ,
+        opacity:isVisible ? 1:0 ,
+        transition: "opacity 3s ease-in-out",}}>
+>>>>>>> 25ee8bd (0000)
         <AppBar
           position="fixed"
           sx={{
@@ -198,6 +287,7 @@ const Nav = () => {
               <MenuIcon />
             </IconButton>
             <Box className="w-full" sx={{ textAlign: 'center' }}>
+<<<<<<< HEAD
               <Typography
                 variant="h6"
                 sx={{
@@ -213,6 +303,24 @@ const Nav = () => {
                 CHECKMATE
               </Typography>
 
+=======
+            <Box
+        component="img"
+        src="/img/logo.png" // Replace with the correct path to your logo
+        alt="Checkmate"
+        sx={{
+          height: "2.2rem", // Adjust height for the logo
+          width: "auto",
+          objectFit: "contain",
+          borderRadius: "50%", // Optional rounded corners for circular style
+          position: "relative",
+          zIndex: 1,
+          margin:"auto",
+          background: "transparent", // Transparent background
+          mixBlendMode:"screen",
+        }}
+      />
+>>>>>>> 25ee8bd (0000)
             </Box>
 
             {loggedIn ? (
@@ -220,6 +328,10 @@ const Nav = () => {
                 {/* Profile Picture as a Menu Button */}
                 <Avatar
                   onClick={handleMenuOpen}
+<<<<<<< HEAD
+=======
+                  src={userData.avatar}
+>>>>>>> 25ee8bd (0000)
                   alt="Profile"
                   sx={{ cursor: 'pointer' }}
                 />
@@ -235,7 +347,11 @@ const Nav = () => {
                 </Menu>
               </div>
             ) : (
+<<<<<<< HEAD
               <Button color="primary" className="font-bold">
+=======
+              <Button className="font-bold bg-orange-800 text-white hover:bg-orange-900 rounded-[10px] py-1 px-3">
+>>>>>>> 25ee8bd (0000)
                 <Link href="/login" passHref>
                   Login
                 </Link>
@@ -250,7 +366,11 @@ const Nav = () => {
         onClose={toggleDrawer(false)}
         PaperProps={{
           sx: {
+<<<<<<< HEAD
             background: 'black',
+=======
+            background: '#0c0a09',
+>>>>>>> 25ee8bd (0000)
             color: 'white' // Ensures Drawer contents start below the AppBar
           },
         }}

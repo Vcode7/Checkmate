@@ -126,6 +126,7 @@ const LoginForm = () => {
 
           <Divider sx={{ my: 3, backgroundColor: 'gray' }} />
 
+<<<<<<< HEAD
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             <Button
               variant="outlined"
@@ -164,6 +165,9 @@ const LoginForm = () => {
               Continue with Apple
             </Button>
           </Box>
+=======
+          
+>>>>>>> 25ee8bd (0000)
         </CardContent>
       </Card>
     </Box>

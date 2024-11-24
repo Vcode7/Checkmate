@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import {
       Box, TextField, Button, Typography,Alert
     } from '@mui/material';
+<<<<<<< HEAD
 import { Google as GoogleIcon, GitHub as GitHubIcon, Apple as AppleIcon } from '@mui/icons-material';
     
+=======
+
+>>>>>>> 25ee8bd (0000)
 const Section1Form = ({formValues,handleInputChange,formErrors,setFormErrors,setReserr, onNext}) => {
     
    
@@ -137,6 +141,7 @@ const Section1Form = ({formValues,handleInputChange,formErrors,setFormErrors,set
                 </Button>
             </Box>
             {/* Divider Text */}
+<<<<<<< HEAD
             <Typography variant="subtitle2" sx={{ textAlign: 'center', color: 'white', my: 2 }}>
                 or sign up with
             </Typography>
@@ -190,6 +195,9 @@ const Section1Form = ({formValues,handleInputChange,formErrors,setFormErrors,set
                 </Button>
             </Box>
 
+=======
+            
+>>>>>>> 25ee8bd (0000)
            
         </Box>
     );

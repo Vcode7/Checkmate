@@ -8,14 +8,19 @@ const TournamentPage = () => {
   const [tournamentType, setTournamentType] = useState('upcoming');
   const [tournaments, setTournaments] = useState({
     upcoming: [],
+<<<<<<< HEAD
     completed: [],
     live: [],
+=======
+    completed: []
+>>>>>>> 25ee8bd (0000)
   });
 
   useEffect(() => {
     const fetchTournaments = async () => {
       try {
 
+<<<<<<< HEAD
         // const response = await fetch('/api/getTournaments');
         // const data = await response.json();
         const data = {
@@ -119,12 +124,18 @@ const TournamentPage = () => {
           ],
         };
         
+=======
+        const response = await fetch('/api/get_tournament');
+        const data = await response.json();
+
+>>>>>>> 25ee8bd (0000)
         if (data.success) {
           const now = dayjs();
           const categorizedTournaments = { upcoming: [], completed: [], live: [] };
 
           // Categorizing tournaments based on the current date
           data.tournaments.forEach(tournament => {
+<<<<<<< HEAD
             const startDate = dayjs(tournament.startDate);
             const endDate = dayjs(tournament.endDate);
 
@@ -134,6 +145,15 @@ const TournamentPage = () => {
               categorizedTournaments.completed.push(tournament);
             } else {
               categorizedTournaments.live.push(tournament);
+=======
+            const date = dayjs(tournament.date);
+
+            if (now.isAfter(date)) {
+              categorizedTournaments.completed.push(tournament);
+            }
+            else {
+              categorizedTournaments.upcoming.push(tournament);
+>>>>>>> 25ee8bd (0000)
             }
           });
 
@@ -163,9 +183,16 @@ const TournamentPage = () => {
         color: 'white',
         marginTop: '5rem',
         textAlign: 'center',
+<<<<<<< HEAD
       }}
     >
       <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'white', mb: 4 ,textShadow:"0 0 5px orange"}}>
+=======
+
+      }}
+    >
+      <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'white', mb: 4, textShadow: "0 0 5px black" }}>
+>>>>>>> 25ee8bd (0000)
         Tournaments
       </Typography>
 
@@ -188,7 +215,10 @@ const TournamentPage = () => {
       >
         <Tab label="Upcoming Tournaments" value="upcoming" />
         <Tab label="Completed Tournaments" value="completed" />
+<<<<<<< HEAD
         <Tab label="Live Tournaments" value="live" />
+=======
+>>>>>>> 25ee8bd (0000)
       </Tabs>
 
       <Grid container spacing={3}>
@@ -207,17 +237,29 @@ const TournamentPage = () => {
             >
               <CardContent>
                 <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: 'lightblue' }}>
+<<<<<<< HEAD
                   <TextStyle text={tournament.name}/>
                 </Typography>
                 <Typography>Date: {dayjs(tournament.startDate).format('YYYY-MM-DD')}</Typography>
                 <Typography>{tournament.registeredMembers}/{tournament.maxMembers}</Typography>
                 <Typography>Timing: {tournament.timing}</Typography>
+=======
+                  <TextStyle text={tournament.name} />
+                </Typography>
+                <Typography>Date: {dayjs(tournament.date).format('YYYY-MM-DD')}</Typography>
+                <Typography>MAX : {tournament.maxMembers}</Typography>
+                <Typography>Timing: {tournament.start} to {tournament.end}</Typography>
+>>>>>>> 25ee8bd (0000)
                 <Box sx={{ marginTop: 2 }}>
                   {tournamentType === 'completed' ? (
                     <Button
                       variant="contained"
                       color="secondary"
+<<<<<<< HEAD
                       href={tournament.resultLink}
+=======
+                      href={tournament.resulth}
+>>>>>>> 25ee8bd (0000)
                       target="_blank"
                       rel="noopener noreferrer"
                       sx={{
@@ -232,7 +274,11 @@ const TournamentPage = () => {
                     <Button
                       variant="contained"
                       color="primary"
+<<<<<<< HEAD
                       href={tournament.joinLink}
+=======
+                      href={tournament.link}
+>>>>>>> 25ee8bd (0000)
                       target="_blank"
                       rel="noopener noreferrer"
                       sx={{
