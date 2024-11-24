@@ -7,11 +7,7 @@ export async function POST(request) {
   await connectDB();
 
   try {
-<<<<<<< HEAD
-    const {  name,maxMembers,  start ,end ,time , link , date} = await request.json();
-=======
     const {  name , maxMembers , start , end , time , link , date} = await request.json();
->>>>>>> 25ee8bd (0000)
 
     // Request to create tournament using the Chess.com API
     // const chessResponse = await fetch(`https://api.chess.com/pub/tournament/create`, {

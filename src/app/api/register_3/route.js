@@ -39,10 +39,7 @@ export async function POST(request) {
       semester,
       chessId,
       password: hashpassword,
-<<<<<<< HEAD
-=======
       avatar:"/profile/12.png"
->>>>>>> 25ee8bd (0000)
     });
 
     // Save the user to the database
