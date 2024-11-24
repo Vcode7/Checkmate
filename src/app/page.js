@@ -9,7 +9,7 @@ import AboutSection from "@/components/main/about";
 import BenefitsSection from "@/components/main/benifits";
 import RegistrationSteps from "@/components/main/registrationstep";
 import LearnChessSection from "@/components/main/learnchess";
-import ContactUs from "@/components/main/contact";
+import ContactUs from "@/components/main/contactus";
 
 const darkTheme = createTheme({
   palette: {
@@ -25,22 +25,17 @@ export default function Home() {
     const timer = setTimeout(() => setLoading(false), 1000); // Adjust duration as needed
     return () => clearTimeout(timer); // Cleanup timeout on unmount
   }, []);
-
+  
   return (
     <div>
-      {loading ? (
-        // Show loader while loading is true
-        <ChessLoader />
-      ) : (
-        <>          
+           {loading && <ChessLoader/>}  
           <Main />
           <AboutSection />
           <BenefitsSection />
           <RegistrationSteps />
           <LearnChessSection />
-          <ContactUs /></>
-
-      )}
+          <ContactUs />
+       
     </div>
   );
 }

@@ -3,7 +3,7 @@ import {
       Box, TextField, Button, Typography,Alert
     } from '@mui/material';
 
-const Section1Form = ({formValues,handleInputChange,formErrors,setFormErrors,setReserr, onNext}) => {
+const Section1Form = ({formValues,handleInputChange,formErrors,setFormErrors,setReserr, onNext,setLoading}) => {
     
    
     const validateStep = () => {
@@ -20,7 +20,7 @@ const Section1Form = ({formValues,handleInputChange,formErrors,setFormErrors,set
     const handleSubmit = async () => {
         const errors = validateStep();
         setFormErrors(errors);
-
+        setLoading(true)
         if (Object.keys(errors).length === 0) {
             const response = await fetch('/api/register_1', {
                 method: 'POST',
@@ -30,10 +30,13 @@ const Section1Form = ({formValues,handleInputChange,formErrors,setFormErrors,set
             const res = await response.json()
             if (res.success) {
                 setReserr("")
+                setLoading(false)
                 onNext();
             }
             else{
                 setReserr(res.error)
+                setLoading(false)
+
             }
         }
     };

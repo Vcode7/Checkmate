@@ -76,7 +76,7 @@ const RegistrationSteps = () => {
       </Animate>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
-          <Step key={step.label} sx={{ marginTop: 3 , '& .MuiStepIcon-root': { color: 'orange' } }}> {/* Set step circle color to red */}
+          <Step key={step.label} sx={{ marginTop: 3 , '& .MuiStepIcon-root': { color: 'orange' } ,'&Mui-completed':{color:"white"}}}> {/* Set step circle color to red */}
             <Animate animationType="fadeInUp">
             <StepLabel>
               <Typography variant="h6" sx={{ color: 'white' }}>
@@ -158,8 +158,8 @@ const RegistrationSteps = () => {
       </Stepper>
 
       {activeStep === steps.length && (
-        <Paper square elevation={0} sx={{ padding: 3, marginTop: 2 }}>
-          <Typography variant="h6" align="center" sx={{ color: 'lightgreen' }}>
+        <Paper square elevation={0} sx={{ padding: 3, marginTop: 2, background:"var(--background)" }}>
+          <Typography variant="h6" align="center" sx={{ color: 'lightgreen', background:"var(--background)" }}>
             Registration Complete! You’re now part of the Checkmate Club.
           </Typography>
           <Link onClick={handleReset} sx={{ marginTop: 2, color: 'lightblue', textDecoration: 'none' }}>

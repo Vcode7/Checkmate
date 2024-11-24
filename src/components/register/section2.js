@@ -19,8 +19,6 @@ const Section2Form = ({formValues,handleInputChange,formErrors,setFormErrors,onN
         onNext();
     }
     }
-  
-  
 
   return (
     <Box component="form" noValidate sx={{ mt: 2 }}>

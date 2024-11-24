@@ -8,12 +8,14 @@ import {
 import Section1Form from '@/components/register/section1';
 import Section2Form from '@/components/register/section2';
 import Section3Form from '@/components/register/section3';
+import Loader from '@/components/SimpleLoader';
 
 const RegistrationForm = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const steps = [' ', ' ', ' '];
-
+  const [loading, setLoading] = useState(false)
+  
   const [reserr, setReserr] = useState("")
   const [formValues, setFormValues] = useState({
     name: '',
@@ -39,6 +41,8 @@ const RegistrationForm = () => {
 
   const handleFinalSubmit = () => setIsSubmitted(true);
   const handlereserr = (e)=> setReserr(e);
+
+
   return (
     <Box
       sx={{
@@ -47,6 +51,7 @@ const RegistrationForm = () => {
         backgroundSize: 'cover', backgroundPosition: 'center', padding: '2rem'
       }}
     >
+      {loading &&<Loader />}
       <Card sx={{ maxWidth: 600, padding: '.5rem',marginTop:"5rem", backgroundColor: 'rgba(0,0,0,0.7)', color: 'white' }}>
         <CardContent>
           <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 'bold', color: 'white', textAlign: 'center' }}>
@@ -81,6 +86,7 @@ const RegistrationForm = () => {
           setFormErrors={setFormErrors}
           setReserr={handlereserr} 
           onNext={handleNext}
+          setLoading={setLoading}
            />}
           {activeStep === 1 && <Section2Form
           formValues={formValues}
@@ -89,7 +95,8 @@ const RegistrationForm = () => {
           setFormErrors={setFormErrors}
            setReserr={handlereserr} 
            onNext={handleNext}
-            onBack={handleBack} />}
+            onBack={handleBack} 
+            setLoading={setLoading}/>}
           {activeStep === 2 && <Section3Form
           formValues={formValues}
           handleInputChange={handleInputChange}
@@ -97,7 +104,8 @@ const RegistrationForm = () => {
           setFormErrors={setFormErrors}
           setReserr={handlereserr} 
           onBack={handleBack}
-          onSubmit={handleFinalSubmit} />}
+          onSubmit={handleFinalSubmit}
+          setLoading={setLoading} />}
         </CardContent>
       </Card>
     </Box>

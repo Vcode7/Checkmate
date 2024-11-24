@@ -20,19 +20,41 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 const initialQuestions = [
   {
     id: 1,
-    title: "How do I use the `useEffect` hook in React?",
+    title: "How do I join a chess tournament?",
     description:
-      "I am trying to understand the `useEffect` hook and how it can be used in different scenarios.",
-    tags: ["React", "Hooks", "JavaScript"],
+      "I want to participate in the chess tournaments organized by the club. What is the process to register and join?",
+    tags: ["Chess", "Tournaments", "Registration"],
   },
   {
     id: 2,
-    title: "How to style components in Material UI?",
+    title: "How can I improve my chess skills?",
     description:
-      "What are the best practices for styling components using Material UI?",
-    tags: ["Material-UI", "Styling", "CSS"],
+      "What resources or activities does the club offer to help members enhance their chess strategies and skills?",
+    tags: ["Chess", "Skill Improvement", "Training"],
+  },
+  {
+    id: 3,
+    title: "How do I log in to the club's portal?",
+    description:
+      "I am a new member of the chess club. How can I log in to the club's portal to access events and updates?",
+    tags: ["Chess Club", "Portal", "Login"],
+  },
+  {
+    id: 4,
+    title: "What are the rules for the upcoming tournaments?",
+    description:
+      "Where can I find the official rules and guidelines for participating in the upcoming chess tournaments?",
+    tags: ["Chess", "Tournaments", "Rules"],
+  },
+  {
+    id: 5,
+    title: "How can I volunteer or mentor in the chess club?",
+    description:
+      "I would like to contribute to the club as a mentor or volunteer. What opportunities are available, and how do I apply?",
+    tags: ["Chess Club", "Mentorship", "Volunteering"],
   },
 ];
+
 
 const ForumPage = () => {
   const [questions, setQuestions] = useState(initialQuestions);

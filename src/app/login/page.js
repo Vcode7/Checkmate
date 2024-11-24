@@ -7,16 +7,19 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import AppleIcon from '@mui/icons-material/Apple';
 import { useRouter } from 'next/navigation'; // Import Next.js router
 import { setTokenInLocalStorage } from '@/components/tokenstore'; // Import setToken function
+import ChessLoader from '@/components/loader';
+import Loader from '@/components/SimpleLoader';
 
 const LoginForm = () => {
   const [formValues, setFormValues] = useState({
     emailOrPhone: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const router = useRouter(); // Initialize the router to handle redirects
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
@@ -24,6 +27,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     setError('');
     setSuccessMessage('');
 
@@ -39,25 +43,28 @@ const LoginForm = () => {
       if (response.ok && data.token) {
         // Save token to localStorage using the setToken function
         setTokenInLocalStorage(data.token);
-
+        setLoading(false)
         // Show success message
         setSuccessMessage('Login successful!');
 
         // Set a timeout of 2 seconds before redirecting
         setTimeout(() => {
-          // Redirect to the homepage after 2 seconds
-          router.push('/');
-        }, 2000);
+          // Redirect to the homepage after 500ms
+          router.replace('/')
+        }, 500);
       } else {
         // Display error message
+        setLoading(false)
         setError(data.error || 'Login failed. Please try again.');
       }
     } catch (error) {
       setError('An error occurred while logging in. Please try again.');
     }
   };
-
+    
   return (
+    <>
+    {loading &&<Loader />}
     <Box
       sx={{
         display: 'flex',
@@ -125,11 +132,9 @@ const LoginForm = () => {
           </form>
 
           <Divider sx={{ my: 3, backgroundColor: 'gray' }} />
-
-          
         </CardContent>
       </Card>
-    </Box>
+    </Box></>
   );
 };
 

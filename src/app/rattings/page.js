@@ -1,15 +1,18 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, CircularProgress, Card, CardContent, Grid } from '@mui/material';
+import { useUser } from '@/components/Userdataprovider';
+import Loader from '@/components/SimpleLoader';
 
 const RatingPage = ({ chessId }) => {
   const [ratings, setRatings] = useState(null);
   const [loading, setLoading] = useState(true);
+  const userData = useUser();
 
   useEffect(() => {
     const fetchRatings = async () => {
       try {
-        const response = await fetch(`https://api.chess.com/pub/player/${chessId}/stats`);
+        const response = await fetch(`https://api.chess.com/pub/player/${userData.chessId}/stats`);
         if (response.ok) {
           const data = await response.json();
           setRatings(data);
@@ -24,14 +27,10 @@ const RatingPage = ({ chessId }) => {
     };
 
     fetchRatings();
-  }, [chessId]);
+  }, [userData]);
 
   if (loading) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-        <CircularProgress />
-      </Box>
-    );
+    return <Loader />
   }
 
   if (!ratings) {

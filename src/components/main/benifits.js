@@ -4,6 +4,7 @@ import { useSwipeable } from 'react-swipeable';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import Animate from '../animate';
 import TextStyle from '../style/Textstyle';
+import HeadStyle from '../style/Textstyle2';
 
 const BenefitsSection = () => {
   const [selectedCard, setSelectedCard] = useState(0);
@@ -45,15 +46,13 @@ const BenefitsSection = () => {
   return (
     <Box
       {...swipeHandlers}
-      className="relative p-4 text-center m-auto bg-cover bg-center min-h-screen flex flex-col justify-center items-center"
+      className="relative p-4 text-center m-auto bg-cover bg-center flex flex-col justify-center items-center"
       sx={{maxWidth:600}}
     >
       {/* Title with animation */}
       <Animate animationType="fadeInUp">
-        <Typography variant="h4" component="h2" sx={{textShadow:"0 0 5px orange"}} gutterBottom className="font-bold text-white opacity-90">
-          Benefits of Joining Checkmate Club
-          
-
+        <Typography variant="h4" component="h2" gutterBottom className="font-bold text-white opacity-90">
+          <HeadStyle text="Benefits of Joining Checkmate Club"/>
         </Typography>
       </Animate>
 
@@ -68,7 +67,7 @@ const BenefitsSection = () => {
           borderRadius: '4px',
           backgroundColor: 'rgba(255, 255, 255, 0.2)',
           '& .MuiLinearProgress-bar': {
-            backgroundColor: 'orange',
+            backgroundColor: '#fed7aa',
           },
           opacity: 0.8,
         }}
@@ -76,7 +75,7 @@ const BenefitsSection = () => {
 
       {/* Navigation Buttons */}
       <Box sx={{zIndex:2}} className="absolute top-1/2 left-4 transform -translate-y-1/2 flex gap-4 md:block opacity-80">
-        <Animate animationType="fadeInLeft">
+        <Animate animationType="fadeIn">
           <button
             onClick={() => handleSwipe('right')}
             className="hidden md:flex items-center justify-center w-10 h-10 bg-black bg-opacity-50 rounded-full text-white hover:bg-gray-700 transition-all duration-200"
@@ -87,7 +86,7 @@ const BenefitsSection = () => {
       </Box>
 
       <Box sx={{zIndex:2}} className="absolute top-1/2 right-4 transform -translate-y-1/2 flex gap-4 md:block opacity-80">
-        <Animate animationType="fadeInRight">
+        <Animate animationType="fadeIn">
           <button
             onClick={() => handleSwipe('left')}
             className="hidden md:flex items-center justify-center w-10 h-10 bg-black bg-opacity-50 rounded-full text-white hover:bg-gray-700 transition-all duration-200"
@@ -109,8 +108,8 @@ const BenefitsSection = () => {
       >
         {benefits.map((benefit, index) => (
             <Card
-            key={index}
-              className="bg-transparent text-white rounded-lg shadow-lg flex-shrink-0 w-full"
+              key={index}
+              className=" text-white rounded-lg shadow-lg flex-shrink-0 w-full"
               sx={{
                 position: 'relative',
                 transition: "all .5s linear",
@@ -118,6 +117,7 @@ const BenefitsSection = () => {
                 minWidth: '300px',
                 maxWidth: '90vw',
                 opacity: selectedCard === index ? 1 : 0.5,
+                background:"rgba(0,0,0,0.5)"
               }}
             >
 
@@ -127,7 +127,7 @@ const BenefitsSection = () => {
                   
                   <TextStyle text={benefit.title}/>
                 </Typography>
-                <Divider sx={{ bgcolor: 'orange', marginY: '1rem' }} />
+                <Divider sx={{ bgcolor: 'orange', marginY: '1rem',fontWeight:"bold" }} />
                 <Typography variant="body1" sx={{padding:"1rem 2rem"}}>{benefit.description}</Typography>
               </CardContent>
               </Animate>

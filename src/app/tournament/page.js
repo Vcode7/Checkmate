@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, Card, CardContent, Button, Grid, Tabs, Tab } from '@mui/material';
 import dayjs from 'dayjs'; // Import dayjs for date formatting
 import TextStyle from '@/components/style/Textstyle';
+import Loader from '@/components/SimpleLoader';
 
 const TournamentPage = () => {
   const [tournamentType, setTournamentType] = useState('upcoming');
+  const [loading, setLoading] = useState(true)
   const [tournaments, setTournaments] = useState({
     upcoming: [],
     completed: []
@@ -36,9 +38,12 @@ const TournamentPage = () => {
 
           // Update state with the categorized tournaments
           setTournaments(categorizedTournaments);
+          setLoading(false)
         }
       } catch (error) {
         console.error('Error fetching tournaments:', error);
+        setLoading(false)
+
       }
     };
 
@@ -48,7 +53,6 @@ const TournamentPage = () => {
   const handleTabChange = (event, newValue) => {
     setTournamentType(newValue);
   };
-
   return (
     <Box
       sx={{
@@ -63,6 +67,7 @@ const TournamentPage = () => {
 
       }}
     >
+      {loading &&<Loader />}
       <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'white', mb: 4, textShadow: "0 0 5px black" }}>
         Tournaments
       </Typography>
@@ -99,7 +104,7 @@ const TournamentPage = () => {
                 borderRadius: 2,
                 color: 'white',
                 transition: '0.3s',
-                '&:hover': { borderColor: 'darkorange' },
+                '&:hover': { borderColor: 'white' },
               }}
             >
               <CardContent>
@@ -133,7 +138,7 @@ const TournamentPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       sx={{
-                        backgroundColor: 'transparent',
+                        backgroundColor: 'orange',
                         color: 'white',
                         '&:hover': { backgroundColor: 'darkorange' },
                       }}

@@ -10,6 +10,7 @@ const Section3Form = ({formValues,handleInputChange,setReserr, onBack, onSubmit 
   const [error, setError] = useState('');
 
   const handleSubmit = async () => {
+    setLoading(true)
     if (!formValues.chessId) {
       setError('Chess.com ID is required');
       return;
@@ -26,6 +27,8 @@ const Section3Form = ({formValues,handleInputChange,setReserr, onBack, onSubmit 
 const res = await response.json();
 if (res.success) {
   setReserr("")
+  setLoading(false)
+
   if (typeof window !== "undefined") {
     setTokenInLocalStorage(response.token);
   }
@@ -33,6 +36,8 @@ if (res.success) {
 }
 else{
   setReserr(res.error)
+  setLoading(false)
+
 }
   };
 

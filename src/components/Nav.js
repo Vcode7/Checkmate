@@ -221,7 +221,7 @@ const Nav = () => {
                 </Menu>
               </div>
             ) : (
-              <Button className="font-bold bg-orange-800 text-white hover:bg-orange-900 rounded-[10px] py-1 px-3">
+              <Button sx={{color:"white"}} className="font-bold bg-orange-800 text-white hover:bg-orange-900 rounded-[10px] py-1 px-3">
                 <Link href="/login" passHref>
                   Login
                 </Link>

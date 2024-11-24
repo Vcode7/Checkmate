@@ -8,6 +8,7 @@ import { Box,
 } from '@mui/material';
 import BoltIcon from '@mui/icons-material/Bolt';
 import ScheduleIcon from '@mui/icons-material/Schedule';
+import ChessLoader from '@/components/loader';
 // Function to sort players by rating for each leaderboard
 const sortPlayersByRating = (players, type) => {
   return players.sort((a, b) => b[`${type}Rating`] - a[`${type}Rating`]);
@@ -33,7 +34,7 @@ const Leaderboard = () => {
             "bulletRating": 1300
           },
           {
-            "name": "Chanchal Bob",
+            "name": "Bob",
             "chessId": "bob456",
             "blitzRating": 1700,
             "rapidRating": 1800,
@@ -77,10 +78,7 @@ const Leaderboard = () => {
   // Display loading state
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-900">
-        <CircularProgress sx={{ color: 'white' }} />
-        <Typography variant="h6" className="ml-4 text-white">Loading leaderboard...</Typography>
-      </div>
+      <ChessLoader />
     );
   }
 
@@ -98,7 +96,7 @@ const Leaderboard = () => {
     return (
     <Box sx={{display:"flex",width:"100%",justifyContent:"center",alignItems:"flex-end",margin:"auto"}}>
      
-     <Card sx={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column",textAlign:"center" ,width:"9rem"}} className='bg-zinc-900'>
+     <Card sx={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column",textAlign:"center" ,width:"9rem",background:"#18181b"}}>
      <Avatar alt="Remy Sharp" sx={{ width: 51, height: 51,background:"gray",position:"relative",top:"5.7rem"}} >{players[1].name[0]}</Avatar>
       <Box component="img" src='/icons/two.png' sx={{width:90,position:"relative",top:"-.5rem"}}/>
          <CardContent sx={{height:"7rem",width:"7rem",borderRadius:"10px 10px 0 0"}} className="shadow-lg bg-gray-800 ">
@@ -106,7 +104,7 @@ const Leaderboard = () => {
               <Typography variant="body1" className="text-white">{players[1][`${type}Rating`]}</Typography>
             </CardContent>
       </Card>
-      <Card sx={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column",textAlign:"center" ,width:"9rem"}} className='bg-zinc-900'>
+      <Card sx={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column",textAlign:"center" ,width:"9rem",background:"#18181b"}}>
       <Avatar alt="Remy Sharp" sx={{ width: 52, height: 52,background:"gold",position:"relative",top:"5.7rem"}} >{players[0].name[0]}</Avatar>
       <Box component="img" src='/icons/one.png' sx={{width:100,position:"relative",top:"-.5rem",left:"1px"}}/>
             <CardContent sx={{height:"8rem",width:"7rem",borderRadius:"10px 10px 0 0"}} className="shadow-lg bg-gray-900 ">
@@ -114,7 +112,7 @@ const Leaderboard = () => {
               <Typography variant="body1" className="text-white">{players[0][`${type}Rating`]}</Typography>
             </CardContent>
       </Card>
-      <Card sx={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column",textAlign:"center" ,width:"9rem"}} className='bg-zinc-900'>
+      <Card sx={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column",textAlign:"center" ,width:"9rem",background:"#18181b"}}>
       <Avatar alt="Remy Sharp" sx={{ width: 50, height: 50,background:"rgb(150,100,100)",position:"relative",top:"4.8rem"}} >{players[2].name[0]}</Avatar>
       <Box component="img" src='/icons/three.png' sx={{width:80,position:"relative",top:"-.5rem",left:"1px"}}/>
              <CardContent sx={{height:"6rem",width:"7rem",borderRadius:"10px 10px 0 0"}} className="shadow-lg bg-gray-700 ">
@@ -176,7 +174,8 @@ const Leaderboard = () => {
         variant="h4"
         align="center"
         gutterBottom
-        className="text-white font-bold text-3xl mt-20 mb-6"
+        className="text-white font-bold text-3xl mb-6"
+        sx={{marginTop:"5\rem"}}
       >
         Chess Leaderboards
       </Typography>
