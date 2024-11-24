@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 import ChessLoader from "@/components/loader";// Import the ChessLoader component
 import Main from "@/components/main/main";
 import AboutSection from "@/components/main/about";
@@ -9,6 +11,11 @@ import RegistrationSteps from "@/components/main/registrationstep";
 import LearnChessSection from "@/components/main/learnchess";
 import ContactUs from "@/components/main/contact";
 
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
