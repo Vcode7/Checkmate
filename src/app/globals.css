@@ -3,13 +3,9 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Mogra&display=swap');
 :root {
-<<<<<<< HEAD
-  --background: #ffffff;
-  --foreground: #171717;
-=======
   --background: #27272a;
   --foreground: #ffffff;
->>>>>>> 25ee8bd (0000)
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,22 +15,6 @@
   }
 }
 
-<<<<<<< HEAD
-body {
-  color: var(--foreground);
-  /* globals.css */
-/* globals.css */
-
-  background-image: url('/bg.jpg'); /* Replace with the actual path to your image */
- 
-  background-repeat:repeat; /* Allows the image to tile */
-  background-position: center;
-  background-color: black; /* Base color behind the image */
-  font-family: 'Mogra', sans-serif;
-}
-
-/* Use a pseudo-element for the overlay effect */
-=======
 @keyframes underline-animate {
   0% {
     width: 0;
@@ -109,7 +89,6 @@ body::before{
   z-index: -1;
 }
 /* Use a pseudo-element for the overlay effect
->>>>>>> 25ee8bd (0000)
 body::before {
   content: '';
   position: fixed;
@@ -121,16 +100,6 @@ body::before {
     circle, 
     rgba(26, 20, 9, 0.8) 0%,
     rgba(14, 9, 4, 0.85) 15%, /* Slightly dark at 70% */
-<<<<<<< HEAD
-    rgba(10, 7, 3, 0.9) 30%,
-    rgba(3, 2, 1, 0.95) 70%,   /* Transparent at the top */
-    rgba(3, 2, 1, 10) 80%, /* Slightly dark at 70% */
-    rgba(0, 0, 0, 10) 100%   /* Black at the bottom */
-  );
-  pointer-events: none; /* Ensures overlay doesn’t interfere with content */
-  z-index: -1; /* Stays behind the content */
-}
-=======
     /* rgba(10, 7, 3, 0.9) 30%,
     rgba(3, 2, 1, 0.95) 70%,   /* Transparent at the top */
     /* rgba(3, 2, 1, 10) 80%, /* Slightly dark at 70% */
@@ -139,7 +108,6 @@ body::before {
   pointer-events: none; /* Ensures overlay doesn’t interfere with content */
   /* z-index: -1; /* Stays behind the content */
 /* }  */
->>>>>>> 25ee8bd (0000)
 
 h1, h2, h3, .mogra-font {
   font-family: 'Mogra', sans-serif; /* Use this class or directly on elements */
