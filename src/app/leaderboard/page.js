@@ -12,7 +12,11 @@ import ChessLoader from '@/components/loader';
 import HeadStyle from '@/components/style/Textstyle2';
 // Function to sort players by rating for each leaderboard
 const sortPlayersByRating = (players, type) => {
-  return players.sort((a, b) => b[`${type}Rating`] - a[`${type}Rating`]);
+  return players.sort((a, b) => {
+    const ratingA = a[`${type}Rating`] === 'N/A' ? -Infinity : a[`${type}Rating`];
+    const ratingB = b[`${type}Rating`] === 'N/A' ? -Infinity : b[`${type}Rating`];
+    return ratingB - ratingA; // Higher ratings first
+  });
 };
 
 const Leaderboard = () => {
@@ -25,46 +29,10 @@ const Leaderboard = () => {
     // Fetch leaderboard data from the API
     const fetchLeaderboardData = async () => {
       try {
-        const data = [
-          // Sample data
-          {
-            "name": "Alice",
-            "chessId": "alice123",
-            "blitzRating": 1450,
-            "rapidRating": 1600,
-            "bulletRating": 1300
-          },
-          {
-            "name": "Bob",
-            "chessId": "bob456",
-            "blitzRating": 1700,
-            "rapidRating": 1800,
-            "bulletRating": 1600
-          },
-          {
-            "name": "Charlie",
-            "chessId": "charlie789",
-            "blitzRating": 1200,
-            "rapidRating": 1500,
-            "bulletRating": 1400
-          },
-          {
-            "name": "David",
-            "chessId": "david101",
-            "blitzRating": 2100,
-            "rapidRating": 2000,
-            "bulletRating": 1900
-          },
-          {
-            "name": "Eve",
-            "chessId": "eve202",
-            "blitzRating": 2200,
-            "rapidRating": 2100,
-            "bulletRating": 2300
-          }
-        ];
-        
+        const res = await fetch("/api/leaderboard")
+        const data = await res.json()
         setLeaderboard(data);
+
       } catch (err) {
         setError('Error fetching leaderboard data');
         console.error(err);
