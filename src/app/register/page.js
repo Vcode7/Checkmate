@@ -9,13 +9,14 @@ import Section1Form from '@/components/register/section1';
 import Section2Form from '@/components/register/section2';
 import Section3Form from '@/components/register/section3';
 import Loader from '@/components/SimpleLoader';
+import { useRouter } from 'next/navigation';
 
 const RegistrationForm = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const steps = [' ', ' ', ' '];
   const [loading, setLoading] = useState(false)
-  
+  const router = useRouter()
   const [reserr, setReserr] = useState("")
   const [formValues, setFormValues] = useState({
     name: '',
@@ -39,7 +40,11 @@ const RegistrationForm = () => {
   const handleNext = () => setActiveStep((prev) => prev + 1);
   const handleBack = () => setActiveStep((prev) => prev - 1);
 
-  const handleFinalSubmit = () => setIsSubmitted(true);
+  const handleFinalSubmit = () => {setIsSubmitted(true);
+    setTimeout(() => {
+      router.push("/")
+    }, 500);
+  }
   const handlereserr = (e)=> setReserr(e);
 
 

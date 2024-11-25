@@ -28,13 +28,12 @@ const res = await response.json();
 if (res.success) {
   setReserr("")
   setLoading(false)
-  login(response.token);
+  login(res.token);
   onSubmit();
 }
 else{
   setReserr(res.error)
   setLoading(false)
-
 }
   };
 

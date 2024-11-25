@@ -50,10 +50,10 @@ export async function POST(request) {
 
     // Remove the password from the object before signing the token
     delete userObject.password;
-
+    console.log(userObject)
     // Sign a JWT token with the user's data (excluding the password)
     const token = jwt.sign(userObject, process.env.JWT_SECRET); // Optionally, you can set an expiry for the token
-
+    console.log(token)
     return NextResponse.json(
       { success: true, message: 'User registered successfully', token },
       { status: 201 }

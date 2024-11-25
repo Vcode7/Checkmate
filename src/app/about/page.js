@@ -54,8 +54,7 @@ const AboutPage = () => {
         padding: "2rem",
         marginTop: "2rem",
         color: "white",
-        minHeight: "100vh",
-        maxWidth:800
+        minHeight: "100vh"
       }}
     >
       {/* Club Description Section */}
