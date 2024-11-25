@@ -135,7 +135,7 @@ const BenefitsSection = () => {
                   <TextStyle text={benefit.title}/>
                 </Typography>
                 <Divider sx={{ bgcolor: 'orange', marginY: '1rem',fontWeight:"bold" }} />
-                <Typography variant="body1" sx={{padding:"1rem 2rem"}}>{benefit.description}</Typography>
+                <Typography variant="body1" sx={{padding:"1rem 2rem" , color:"white"}}>{benefit.description}</Typography>
               </CardContent>
               </Animate>
             </Card>
