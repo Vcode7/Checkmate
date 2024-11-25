@@ -33,6 +33,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`antialiased ${poppin.className}`} >
         <UserDataProvider>
+        
             <Nav />
             {children}
             <Footer />

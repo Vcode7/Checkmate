@@ -1,46 +1,43 @@
 import nodemailer from 'nodemailer';
+import { NextResponse } from 'next/server';
 
-export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const { email } = req.body;
+// Function to handle POST requests
+export async function POST(request) {
+  try {
+    const body = await request.json();
+    const { email } = body;
 
     if (!email) {
-      return res.status(400).json({ error: 'Email is required' });
+      return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
-    // Generate a random OTP (for simplicity, you can just use a 6-digit number)
+    // Generate a random OTP (6-digit number as a string)
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    try {
-      // Setup Nodemailer transport
-      const transporter = nodemailer.createTransport({
-        service: 'gmail', // or use any other email provider
-        auth: {
-          user: process.env.EMAIL_ID, // Email address for sending emails
-          pass: process.env.EMAIL_PASSWORD, // Password for the email account
-        },
-      });
+    // Configure Nodemailer transport
+    const transporter = nodemailer.createTransport({
+      service: 'gmail', // Use your email service provider
+      auth: {
+        user: process.env.EMAIL_ID, // Sender email (stored in environment variables)
+        pass: process.env.EMAIL_PASSWORD, // Sender email password (stored securely)
+      },
+    });
 
-      // Email message options
-      const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: email,
-        subject: 'Your OTP for Email Verification',
-        text: `Your OTP is ${otp}`,
-      };
+    // Email message options
+    const mailOptions = {
+      from: `"Support Team" <${process.env.EMAIL_ID}>`, // Sender name and email
+      to: email, // Recipient email
+      subject: 'Your OTP for Email Verification',
+      text: `Your OTP is ${otp}. It is valid for 5 minutes.`,
+    };
 
-      // Send OTP email
-      await transporter.sendMail(mailOptions);
+    // Send the OTP email
+    await transporter.sendMail(mailOptions);
 
-      // Store OTP in your database or session for later verification (You should do this for security)
-      // For now, just send it back in the response
-      res.status(200).json({ message: 'OTP sent successfully', otp });
-    } catch (error) {
-      console.error('Error sending email:', error);
-      res.status(500).json({ error: 'Failed to send OTP' });
-    }
-  } else {
-    res.status(405).json({ error: 'Method Not Allowed' });
+    // Respond with success
+    return NextResponse.json({ message: 'OTP sent successfully', otp });
+  } catch (error) {
+    console.error('Error sending OTP:', error);
+    return NextResponse.json({ error: 'Failed to send OTP. Please try again.' }, { status: 500 });
   }
 }
-

@@ -4,8 +4,10 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Animate from '../animate';
 import TextStyle from '../style/Textstyle';
 import HeadStyle from '../style/Textstyle2';
+import { useLoggedIn } from '../Userdataprovider';
 
 const AboutSection = () => {
+  const loggedIn = useLoggedIn()
   return (
     <Box
       sx={{
@@ -125,7 +127,7 @@ const AboutSection = () => {
                   >
                     Learn More <ArrowForwardIosIcon fontSize="small" sx={{ ml: 0.5 }} />
                   </Link>
-                  <Link
+                 {!loggedIn && <Link
                     href="#register"
                     underline="none"
                     className='hover:text-red-800'
@@ -137,7 +139,7 @@ const AboutSection = () => {
                     }}
                   >
                     Register Now <ArrowForwardIosIcon fontSize="small" sx={{ ml: 0.5 }} />
-                  </Link>
+                  </Link>}
                   </Animate>
                 </Box>
               </CardContent>

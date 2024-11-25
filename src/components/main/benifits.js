@@ -47,7 +47,14 @@ const BenefitsSection = () => {
     <Box
       {...swipeHandlers}
       className="relative p-4 text-center m-auto bg-cover bg-center flex flex-col justify-center items-center"
-      sx={{maxWidth:600}}
+      sx={{width: "100%",
+        maxWidth: 800,
+        margin: "2rem auto",
+        padding: "2rem",
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
+        borderRadius: "8px",
+        textAlign: "center",
+        color: "white",}}
     >
       {/* Title with animation */}
       <Animate animationType="fadeInUp">

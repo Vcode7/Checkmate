@@ -47,7 +47,7 @@ const resources = [
 
 const LearnPage = () => {
   return (
-    <Box sx={{ padding: "2rem", backgroundColor: "#f5f5f5", minHeight: "100vh" }}>
+    <Box sx={{ padding: "2rem", backgroundColor: "var(--background)", minHeight: "100vh" }}>
       <Typography variant="h3" gutterBottom sx={{ textAlign: "center", marginBottom: "2rem", fontWeight: "bold" }}>
         Learn Chess
       </Typography>
@@ -61,12 +61,12 @@ const LearnPage = () => {
       <Grid container spacing={3}>
         {resources.map((resource, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card sx={{ height: "100%", backgroundColor: "#ffffff", borderRadius: "8px" }}>
+            <Card sx={{ height: "100%", backgroundColor: "rgba(0,0,0,0.3)", borderRadius: "8px" }}>
               <CardContent>
                 <Typography variant="h6" sx={{ fontWeight: "bold", marginBottom: "0.5rem" }}>
                   {resource.step}
                 </Typography>
-                <Typography variant="body2" sx={{ color: "#777", marginBottom: "1rem" }}>
+                <Typography variant="body2" sx={{ color: "white", marginBottom: "1rem" }}>
                   {resource.description}
                 </Typography>
                 <List>

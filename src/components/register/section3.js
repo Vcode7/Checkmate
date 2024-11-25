@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import {
   Typography,Box, TextField, Button
   } from '@mui/material';
-import { setTokenInLocalStorage } from '@/components/tokenstore';
+import { useUser } from '../Userdataprovider';
 
-const Section3Form = ({formValues,handleInputChange,setReserr, onBack, onSubmit ,email}) => {
+const Section3Form = ({formValues,handleInputChange,setReserr, onBack,setLoading, onSubmit }) => {
 
   const [error, setError] = useState('');
-
+  const {login} = useUser()
   const handleSubmit = async () => {
     setLoading(true)
     if (!formValues.chessId) {
@@ -28,10 +28,7 @@ const res = await response.json();
 if (res.success) {
   setReserr("")
   setLoading(false)
-
-  if (typeof window !== "undefined") {
-    setTokenInLocalStorage(response.token);
-  }
+  login(response.token);
   onSubmit();
 }
 else{

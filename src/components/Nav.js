@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useContext} from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -15,25 +15,21 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Avatar, Menu, MenuItem } from '@mui/material';
-import { useUser } from './Userdataprovider';
-import { removeTokenFromLocalStorage } from './tokenstore';
-import { usePathname } from 'next/navigation'
- 
+import { useLoggedIn, useUser } from './Userdataprovider';
+import { usePathname,redirect } from 'next/navigation'
+
 const Nav = () => {
   const [open, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false)
-  const [loggedIn, setLoggedIn] = useState(false);
+  const loggedIn= useLoggedIn();
   const [anchorEl, setAnchorEl] = useState(null);
   const router = useRouter();
-  const userData = useUser(); // Access the current route
+  const {userData} = useUser(); // Access the current route
   const pathname = usePathname()
-  useEffect(() => {
-    if (userData) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
+  const {logout} = useUser() // Use the login function from UserContext
 
+  
+  useEffect(() => {
     // Set timeout based on the route
     const timeoutDuration = pathname === "/" ? 4000 : 1000;
     console.log(pathname)
@@ -55,9 +51,8 @@ const Nav = () => {
 
   const handleLogout = () => {
     // Clear the token on logout
-    setLoggedIn(false);
-    removeTokenFromLocalStorage()
-    router.push('/login'); // Redirect to login page after logout
+    logout()
+    redirect('/login'); // Redirect to login page after logout
   };
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);

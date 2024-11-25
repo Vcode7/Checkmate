@@ -7,7 +7,7 @@ import Loader from '@/components/SimpleLoader';
 const RatingPage = ({ chessId }) => {
   const [ratings, setRatings] = useState(null);
   const [loading, setLoading] = useState(true);
-  const userData = useUser();
+  const { userData }= useUser();
 
   useEffect(() => {
     const fetchRatings = async () => {
@@ -48,7 +48,7 @@ const RatingPage = ({ chessId }) => {
       <Card sx={{ maxWidth: 500, width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.8)', color: 'white', padding: '2rem' }}>
         <CardContent>
           <Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', mb: 3 }}>
-            {chessId}&apos;s Chess Ratings
+            {userData.name}&apos;s Chess Ratings
           </Typography>
           <Grid container spacing={2}>
             {chess_blitz && (

@@ -52,13 +52,13 @@ const LearnChessSection = () => {
             If you&apos;re new to chess, don&apos;t worry! We have resources to get you started on your journey to becoming a skilled player.
           </Typography>
           <Link
-            href="https://www.chess.com/learn-how-to-play-chess"
+            href="/learnchess"
             target="_blank"
             rel="noopener noreferrer"
             sx={{
               display: 'inline-flex',
               alignItems: 'center',
-              color: 'red',
+              color: 'orange',
               fontWeight: 'bold',
               fontSize: '1rem',
               textTransform: 'uppercase',

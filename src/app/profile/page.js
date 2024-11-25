@@ -5,13 +5,13 @@ import { Box, Typography, Card, CardContent, Avatar, Grid, IconButton, Divider, 
 import { Edit as EditIcon, Save as SaveIcon, Close as CloseIcon } from '@mui/icons-material';
 import { useUser } from "@/components/Userdataprovider";
 import ChessLoader from '@/components/loader';
-import { setTokenInLocalStorage } from '@/components/tokenstore';
 
 const ProfilePage = () => {
   const [editMode, setEditMode] = useState(false);
   const [visible, setVisible] = useState(false)
   const [avatarModalOpen, setAvatarModalOpen] = useState(false);
-  const userData = useUser();
+  const {userData,login} = useUser();
+  
   console.log(userData)
   const [editableData, setEditableData] = useState({});
   useEffect(() => {
@@ -50,7 +50,7 @@ const ProfilePage = () => {
       const result = await response.json();
 
       if (response.ok) {
-        setTokenInLocalStorage(result.token)
+        login(result.token)
         setEditMode(false);
       } else {
         console.error(result.error || 'Failed to update profile');

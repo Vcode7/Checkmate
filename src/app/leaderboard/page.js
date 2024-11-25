@@ -9,6 +9,7 @@ import { Box,
 import BoltIcon from '@mui/icons-material/Bolt';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import ChessLoader from '@/components/loader';
+import HeadStyle from '@/components/style/Textstyle2';
 // Function to sort players by rating for each leaderboard
 const sortPlayersByRating = (players, type) => {
   return players.sort((a, b) => b[`${type}Rating`] - a[`${type}Rating`]);
@@ -128,7 +129,7 @@ const Leaderboard = () => {
   const renderPlayerTable = (players, type) => {
     return players.slice(3).map((player, index) => (
       <TableRow key={index} className="hover:bg-gray-800 transition-colors duration-200">
-          <TableCell className='text-white w-1 ' sx={{borderRight:"2px solid white"}}>{index+4}</TableCell>
+          <TableCell sx={{color:"white",borderRight:"2px solid white"}} className=' w-1 ' >{index+4}</TableCell>
         <TableCell sx={{display:"flex",justifyContent:"left",alignItems:"center", color: 'white', borderBottom: '1px solid orange' }}>
           <Avatar alt="Remy Sharp" sx={{ width: 30, height: 30,background:"rgb(250,90,90)",marginRight:"4px"}} >{player.name[0]}</Avatar>
           <Typography variant="p" className="text-white font-bold">{player.name}</Typography>
@@ -175,9 +176,9 @@ const Leaderboard = () => {
         align="center"
         gutterBottom
         className="text-white font-bold text-3xl mb-6"
-        sx={{marginTop:"5\rem"}}
+        sx={{marginTop:"5rem"}}
       >
-        Chess Leaderboards
+       <HeadStyle text="Chess Leaderboards"/>
       </Typography>
 
       {/* Tabs for Leaderboards */}
@@ -209,6 +210,7 @@ const Leaderboard = () => {
       {/* Content for Selected Tab */}
       <Box>
         <Typography variant="h4" className="text-white font-bold text-center text-2xl mb-8">
+          
           {selectedTab.charAt(0).toUpperCase() + selectedTab.slice(1)}
         </Typography>
         <Grid container>
