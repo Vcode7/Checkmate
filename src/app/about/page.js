@@ -13,29 +13,29 @@ import {
 // Sample data for club members
 const clubMembers = [
   {
-    name: "Anjali",
+    name: "Anjali Kumari",
     image: "/profile/20.png",
     course: "CSE_CY",
   },
   {
-    name: "Payal",
+    name: "Payal Kumari",
     image: "/profile/4.png",
     course: "CSE_CY",
   },
   {
-    name: "Pranati",
+    name: "Pranati R",
     image: "/profile/3.png",
     course: "CSE_CY",
   },
   {
-    name: "Nehal",
+    name: "Nehal yadav",
     image: "/profile/13.png",
-    course: "CSE_CY",
+    course: "CSE_AI",
   },
   {
-    name: "Vikas",
+    name: "Vikas N",
     image: "/profile/12.png",
-    course: "CSE_CY",
+    course: "CSE_AI",
   },
 ];
 

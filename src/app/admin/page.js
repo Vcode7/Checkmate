@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { TextField,Grid,Button, Typography, Modal, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import { TextField,Grid,Button, Typography, Modal, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Snackbar, Alert } from "@mui/material";
 import AddTournamentModal from "@/components/admin/AddTournament";
 
 // Styles for the modal
@@ -21,7 +21,11 @@ const AdminPage = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+const [tournamentName, setTournamentName] = useState("");
+const [snackbarOpen, setSnackbarOpen] = useState(false);
+const [snackbarMessage, setSnackbarMessage] = useState("");
+const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
     const [totalRegistrations, setTotalRegistrations] = useState(0);
     const [registrations, setRegistrations] = useState([]);
@@ -33,6 +37,44 @@ const AdminPage = () => {
     const handleopenadd = ()=>{setAddtournamentmodelopen(true)}
     const handlecloseadd = ()=>{setAddtournamentmodelopen(false)}
     //login
+
+    const handleOpenDeleteModal = () => setDeleteModalOpen(true);
+const handleCloseDeleteModal = () => {
+  setDeleteModalOpen(false);
+  setTournamentName("");
+};
+
+const handleDeleteTournament = async () => {
+  try {
+    const response = await fetch("/api/delete_tournament", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: tournamentName }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      setSnackbarMessage(result.message || "Tournament deleted successfully");
+      setSnackbarSeverity("success");
+    } else {
+      setSnackbarMessage(result.error || "Failed to delete tournament");
+      setSnackbarSeverity("error");
+    }
+  } catch (error) {
+    setSnackbarMessage("An unexpected error occurred");
+    setSnackbarSeverity("error");
+  } finally {
+    setSnackbarOpen(true);
+    handleCloseDeleteModal();
+  }
+};
+
+const handleCloseSnackbar = () => setSnackbarOpen(false);
+
+
     const handleLogin = async () => {
         // Compare entered credentials with environment variables
         if (username === process.env.NEXT_PUBLIC_ADMIN_USERNAME && password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
@@ -194,32 +236,18 @@ const AdminPage = () => {
               Add Tournament
             </Button>
           </Grid>
-
+          <Grid item xs={12}>
           {/* Edit Tournament */}
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              color="warning"
-              size="large"
-              fullWidth
-              onClick={() => console.log("Edit tournament clicked")}
-            >
-              Edit Tournament
-            </Button>
-          </Grid>
-
-          {/* Announce Result */}
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              fullWidth
-              onClick={() => console.log("Announce result clicked")}
-            >
-              Announce Result
-            </Button>
-          </Grid>
+        <Button
+    variant="contained"
+    color="error"
+    size="large"
+    fullWidth
+    onClick={handleOpenDeleteModal}
+  >
+    Delete Tournament
+  </Button>
+  </Grid>
         </Grid>
         <Modal open={isModalOpen} onClose={handleCloseModal}>
         <Box sx={modalStyle}>
@@ -268,7 +296,52 @@ const AdminPage = () => {
           </Button>
         </Box>
       </Modal>
+      <Modal open={deleteModalOpen} onClose={handleCloseDeleteModal}>
+  <Box sx={modalStyle}>
+    <Typography variant="h5" color="black" gutterBottom>
+      Delete Tournament
+    </Typography>
+    <TextField
+      label="Tournament Name"
+      variant="outlined"
+      fullWidth
+      value={tournamentName}
+      onChange={(e) => setTournamentName(e.target.value)}
+      margin="normal"
+    />
+    <Box display="flex" justifyContent="space-between" mt={2}>
+      <Button
+        variant="contained"
+        color="error"
+        onClick={handleDeleteTournament}
+        disabled={!tournamentName}
+      >
+        Delete
+      </Button>
+      <Button
+        variant="contained"
+        onClick={handleCloseDeleteModal}
+      >
+        Cancel
+      </Button>
+    </Box>
+  </Box>
+</Modal>
       <AddTournamentModal open={addtournamentmodelopen} handleClose={handlecloseadd}/>
+      <Snackbar
+  open={snackbarOpen}
+  autoHideDuration={6000}
+  onClose={handleCloseSnackbar}
+  anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+>
+  <Alert
+    onClose={handleCloseSnackbar}
+    severity={snackbarSeverity}
+    sx={{ width: "100%" }}
+  >
+    {snackbarMessage}
+  </Alert>
+</Snackbar>
       </Box>
   );
 };

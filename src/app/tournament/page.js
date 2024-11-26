@@ -119,7 +119,7 @@ const TournamentPage = () => {
                     <Button
                       variant="contained"
                       color="secondary"
-                      href={tournament.resulth}
+                      href={tournament.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       sx={{
